@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <group
+        android:id="@+id/group_one"
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/nav_fuli"
+            android:checked="true"
+            android:icon="@drawable/icon_fuli"
+            android:title="图片"/>
+        <item
+            android:id="@+id/menu_category"
+            android:icon="@drawable/icon_category"
+            android:title="文章"
+            />
+        <item
+            android:id="@+id/menu_video"
+            android:icon="@drawable/icon_video"
+            android:title="视频"
+            />
+
+        <item
+            android:id="@+id/menu_collect"
+            android:icon="@drawable/icon_collect_yes"
+            android:title="收藏"
+            />
+
+    </group>
+    <item
+        android:id="@+id/menu_setup"
+        android:icon="@drawable/icon_setup"
+        android:title="设置"
+        />
+    <item
+        android:id="@+id/menu_share"
+        android:icon="@drawable/icon_share"
+        android:title="分享"
+        />
+    <item
+        android:id="@+id/menu_about"
+        android:icon="@drawable/icon_about"
+        android:title="关于"
+        />
+    <item
+        android:id="@+id/menu_exit"
+        android:icon="@drawable/activity_back_active"
+        android:title="退出"
+        />
+
+</menu>
