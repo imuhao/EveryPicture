@@ -1,2 +1,2 @@
-# PictureEveryDay
-每日一图
+# 每日一图
+
