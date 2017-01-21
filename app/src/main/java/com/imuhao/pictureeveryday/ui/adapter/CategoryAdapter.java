@@ -1,0 +1,36 @@
+package com.imuhao.pictureeveryday.ui.adapter;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.imuhao.pictureeveryday.ui.fragment.PublicFragment;
+
+/**
+ * @author Smile
+ * @time 2016/6/24  11:13
+ * @desc ${TODD}
+ */
+public class CategoryAdapter extends FragmentStatePagerAdapter {
+    private String[] title;
+
+    public CategoryAdapter(FragmentManager fm, String[] TITLE) {
+        super(fm);
+        title = TITLE;
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        return PublicFragment.newInstance(title[position]);
+    }
+
+    @Override
+    public int getCount() {
+        return title.length;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return title[position];
+    }
+}

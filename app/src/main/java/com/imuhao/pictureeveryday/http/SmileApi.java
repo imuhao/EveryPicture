@@ -2,7 +2,7 @@ package com.imuhao.pictureeveryday.http;
 
 import com.imuhao.pictureeveryday.bean.EssayBean;
 import com.imuhao.pictureeveryday.bean.HttpResult;
-import com.imuhao.pictureeveryday.callback.MyCallBack;
+import com.imuhao.pictureeveryday.ui.callback.DataCallBack;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import retrofit.Retrofit;
 public class SmileApi {
 
 
-    public static void getEssatData(String type, final int what, int count, int index, final MyCallBack myCallBack) {
+    public static void getEssatData(String type, final int what, int count, int index, final DataCallBack dataCallBack) {
         ApiService service = BuildApi.getApiService();
         Call<HttpResult<List<EssayBean>>> call = service.getCommonDateNew(type, count, index);
 
@@ -29,18 +29,18 @@ public class SmileApi {
                 if (response.isSuccess()) {
                     if (!response.body().isError()) {
                         //成功的回调
-                        myCallBack.onSuccess(what,response.body().getResults());
-//                        myCallBack.onSuccessList(what, response.body().getResults());
+                        dataCallBack.onSuccess(what,response.body().getResults());
+//                        dataCallBack.onSuccessList(what, response.body().getResults());
                     } else {
-                        myCallBack.onError(what, "获取数据失败" + response.code());
+                        dataCallBack.onError(what, "获取数据失败" + response.code());
                     }
                 } else {
-                    myCallBack.onError(what, "获取数据失败" + response.code());
+                    dataCallBack.onError(what, "获取数据失败" + response.code());
                 }
             }
 
             public void onFailure(Throwable t) {
-                myCallBack.onError(what, t.getMessage());
+                dataCallBack.onError(what, t.getMessage());
             }
         });
 

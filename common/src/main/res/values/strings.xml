@@ -1,0 +1,4 @@
+<resources>
+	<string name="common_click_retry">点击重试</string>
+	<string name="app_name">每日一图</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!--自定义SwitchButton-->
+	<declare-styleable name="SwitchButton">
+		<attr name="kswThumbDrawable" format="reference"/>
+		<attr name="kswThumbColor" format="color|reference"/>
+		<attr name="kswThumbMargin" format="dimension|reference"/>
+		<attr name="kswThumbMarginTop" format="dimension|reference"/>
+		<attr name="kswThumbMarginBottom" format="dimension|reference"/>
+		<attr name="kswThumbMarginLeft" format="dimension|reference"/>
+		<attr name="kswThumbMarginRight" format="dimension|reference"/>
+		<attr name="kswThumbWidth" format="dimension|reference"/>
+		<attr name="kswThumbHeight" format="dimension|reference"/>
+		<attr name="kswThumbRadius" format="dimension|reference"/>
+		<attr name="kswBackRadius" format="dimension|reference"/>
+		<attr name="kswBackDrawable" format="reference"/>
+		<attr name="kswBackColor" format="color|reference"/>
+		<attr name="kswFadeBack" format="boolean"/>
+		<attr name="kswBackMeasureRatio" format="float"/>
+		<attr name="kswAnimationDuration" format="integer"/>
+		<attr name="kswTintColor" format="color|reference"/>
+	</declare-styleable>
+
+	<declare-styleable name="SwipeBackLayout">
+		<attr name="edge_size" format="dimension"/>
+		<attr name="edge_flag">
+			<enum name="left" value="0"/>
+			<enum name="right" value="1"/>
+			<enum name="bottom" value="2"/>
+			<enum name="all" value="3"/>
+		</attr>
+		<attr name="shadow_left" format="reference"/>
+		<attr name="shadow_right" format="reference"/>
+		<attr name="shadow_bottom" format="reference"/>
+	</declare-styleable>
+
+	<style name="SwipeBackLayout">
+		<item name="edge_size">50dip</item>
+		<item name="shadow_left">@drawable/ic_shadow_left</item>
+		<item name="shadow_right">@drawable/ic_shadow_right</item>
+		<item name="shadow_bottom">@drawable/ic_shadow_bottom</item>
+	</style>
+
+	<attr name="SwipeBackLayoutStyle" format="reference"/>
+
+	<declare-styleable name="Theme">
+		<attr name="customImageViewStyle" format="reference"/>
+	</declare-styleable>
+
+	<!-- 自定义圆角ImageView -->
+	<declare-styleable name="XImageView">
+		<attr name="ratio" format="float"/>
+		<attr name="circle" format="boolean"/>
+		<attr name="radius" format="dimension"/>
+	</declare-styleable>
+</resources>
