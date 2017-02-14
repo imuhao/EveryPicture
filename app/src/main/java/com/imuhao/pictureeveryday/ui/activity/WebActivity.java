@@ -120,7 +120,7 @@ public class WebActivity extends BaseActivity {
         webView.getSettings().setDomStorageEnabled(true);
         ////////////////////////////////
         // 建议缓存策略为，判断是否有网络，有的话，使用LOAD_DEFAULT,无网络时，使用LOAD_CACHE_ELSE_NETWORK
-        if (NetUtils.hasNetWorkConection(this)) {
+        if (NetUtils.hasNetWorkConcetion(this)) {
             webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);   // 根据cache-control决定是否从网络上取数据。
         } else {
             webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);   //优先加载缓存

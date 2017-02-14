@@ -13,11 +13,6 @@ public interface DataCallBack<T> {
     void onSuccess(int what, T t);
 
     /**
-     * 成功的回调集合
-     */
-//    void onSuccessList(int what, List<T> results);
-
-    /**
      * 失败的回调
      */
     void onError(int width, String error);

@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 public class NavFuliAdapter extends RecyclerView.Adapter<MyHoler> {
 
     private Context mContext;
-    private List<NavFuliBean> mData;
+    private List<NavFuliBean> mData = new ArrayList<>();
     private List<Integer> mHeight;
     private int ScreenHeight;
     private onItemClickListener mListener;

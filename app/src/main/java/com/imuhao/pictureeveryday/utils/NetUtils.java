@@ -14,7 +14,7 @@ public class NetUtils {
      *
      * @return
      */
-    public static final boolean hasNetWorkConection(Context ctx) {
+    public static  boolean hasNetWorkConcetion(Context ctx) {
         // 获取连接活动管理器
         final ConnectivityManager connectivityManager = (ConnectivityManager) ctx
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

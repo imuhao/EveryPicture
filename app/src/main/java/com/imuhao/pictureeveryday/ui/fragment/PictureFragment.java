@@ -8,8 +8,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.imuhao.pictureeveryday.R;
@@ -34,19 +36,24 @@ import org.json.JSONObject;
  * @time 2016/6/22  13:23
  * @desc 图片页面
  */
-public class PictureFragment extends BaseFragment {
-  private RecyclerView mRecyclerView;
-  private static PictureFragment instance;
-  private NavFuliAdapter mAdapter;
+public class PictureFragment extends BaseFragment implements View.OnClickListener {
   private static final int INIT_DATA = 0X001;
-  private int PageSize = 20;
-  private int Index = 1;
-  private Handler mHandler = new Handler();
-  private List<NavFuliBean> mData;
+  private static final int LOAD_ERROR = 0x002;
 
+  private int index = 1;
+  private int pageSize = 20;
+
+  private static PictureFragment instance;
+
+  private List<NavFuliBean> mData;
   private ArrayList<String> mUrlList;
+
+  private NavFuliAdapter mAdapter;
+  private RecyclerView mRecyclerView;
+  private MyHandler mHandler = new MyHandler(this);
   private ImageView loadingImg;
   private RelativeLayout loadingLl;
+  private Button mBtnRetryLoad;
 
   private boolean isLoadMore;
   private boolean isLoading;
@@ -57,16 +64,18 @@ public class PictureFragment extends BaseFragment {
 
   public void onDestroy() {
     super.onDestroy();
-    Index = 1;
+    index = 0;
   }
 
   public void initData() {
     isLoading = true;
     loadingLl.setVisibility(View.VISIBLE);
-    String url = Contance.getFuliUrl(PageSize, Index);
-    Index++;
+    mBtnRetryLoad.setVisibility(View.GONE);
+    String url = Contance.getFuliUrl(pageSize, index);
+    index++;
     HttpUtils.getInstance().doGet(url, new HttpRequest() {
       public void onFailure(String error) {
+        mHandler.obtainMessage(LOAD_ERROR, error).sendToTarget();
       }
 
       public void onResponse(String result) {
@@ -87,6 +96,9 @@ public class PictureFragment extends BaseFragment {
   public void initView(View view) {
     loadingImg = (ImageView) view.findViewById(R.id.loading_image);
     loadingLl = (RelativeLayout) view.findViewById(R.id.loading_ll);
+    mBtnRetryLoad = (Button) view.findViewById(R.id.btn_retry_load);
+    mBtnRetryLoad.setOnClickListener(this);
+
     AnimationDrawable ad = (AnimationDrawable) loadingImg.getBackground();
     ad.start();
 
@@ -132,19 +144,28 @@ public class PictureFragment extends BaseFragment {
     return instance;
   }
 
-  //更新数据
   private void setRecyclerData(List<NavFuliBean> data) {
     isLoading = false;
     loadingLl.setVisibility(View.GONE);
     if (isLoadMore) {
-      //加载更多
-      // mData.addAll(data);
-
       mAdapter.addData(data);
     } else {
-      //初始化
       mData = data;
       mAdapter.setData(data);
+    }
+  }
+
+  private void showErrorMsg(String msg) {
+    index--;
+    mBtnRetryLoad.setVisibility(View.VISIBLE);
+    Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    loadingLl.setVisibility(View.GONE);
+  }
+
+  @Override public void onClick(View view) {
+    //加载失败重试
+    if (mBtnRetryLoad == view) {
+      initData();
     }
   }
 
@@ -164,6 +185,10 @@ public class PictureFragment extends BaseFragment {
       switch (msg.what) {
         case INIT_DATA:
           fragment.setRecyclerData((List<NavFuliBean>) msg.obj);
+          break;
+        case LOAD_ERROR:
+          String error = (String) msg.obj;
+          fragment.showErrorMsg(error);
           break;
       }
     }

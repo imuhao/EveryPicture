@@ -10,17 +10,11 @@ import com.imuhao.pictureeveryday.ui.base.BaseFragment;
  * @desc ${TODD}
  */
 public class SettingFragment extends BaseFragment {
-
   private static SettingFragment instance;
 
   public static SettingFragment newInstance() {
-
     if (instance == null) {
-      synchronized (SettingFragment.class) {
-        if (instance == null) {
-          instance = new SettingFragment();
-        }
-      }
+      instance = new SettingFragment();
     }
     return instance;
   }

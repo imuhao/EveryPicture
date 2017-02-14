@@ -8,6 +8,4 @@ package com.imuhao.pictureeveryday.utils;
 public class IntentValues {
     public static final String BIG_IMG_POSITION = "bigimgposition";
     public static final String BIG_IMG_LIST = "bigimglist";
-
-
 }

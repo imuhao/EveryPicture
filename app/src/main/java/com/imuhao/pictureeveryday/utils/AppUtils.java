@@ -29,7 +29,6 @@ import javax.security.auth.x500.X500Principal;
 
 /**
  * App信息工具
- * Created by guchenkai on 2015/11/25.
  */
 public final class AppUtils {
 

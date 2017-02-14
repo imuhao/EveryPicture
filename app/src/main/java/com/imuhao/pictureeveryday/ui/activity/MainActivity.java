@@ -3,10 +3,6 @@ package com.imuhao.pictureeveryday.ui.activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Shader;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -25,6 +21,7 @@ import com.imuhao.pictureeveryday.ui.fragment.AboutFragment;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
 import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
+import com.imuhao.pictureeveryday.utils.ImageUtils;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.MainTab;
 import java.util.List;
@@ -92,18 +89,9 @@ public class MainActivity extends BaseActivity {
           }
         });
     //画一个圆形的Bitmap图片
-    ImageView image = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
-    Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.bbb);
-    int radius = src.getWidth() / 2;
-    BitmapShader bitmapShader =
-        new BitmapShader(src, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
-    Bitmap dest = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Bitmap.Config.ARGB_8888);
-    Canvas c = new Canvas(dest);
-    Paint paint = new Paint();
-    paint.setAntiAlias(true);
-    paint.setShader(bitmapShader);
-    c.drawCircle(radius, radius, radius, paint);
-    image.setImageBitmap(dest);
+    ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
+    Bitmap srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bbb);
+    ImageUtils.setCircleUtils(imageView, srcBitmap);
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
