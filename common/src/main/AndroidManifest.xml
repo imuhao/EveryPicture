@@ -1,4 +1,4 @@
-<manifest package="com.ylian.common"
+<manifest package="com.imuhao.common"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	>
 
@@ -12,10 +12,10 @@
 		android:supportsRtl="true">
 
 		<activity
-			android:name=".base.activity.BaseContentActivity"/>
+			android:name="com.imuhao.common.base.activity.BaseContentActivity"/>
 
 		<meta-data
-			android:name="com.ylian.common.glide.GlideConfiguration"
+			android:name="com.imuhao.common.glide.GlideConfiguration"
 			android:value="GlideModule"/>
 	</application>
 

@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.imuhao.pictureeveryday.ui.fragment.PublicFragment;
+import com.imuhao.pictureeveryday.ui.fragment.PostListFragment;
 
 /**
  * @author Smile
@@ -21,7 +21,7 @@ public class CategoryAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PublicFragment.newInstance(title[position]);
+        return PostListFragment.newInstance(title[position]);
     }
 
     @Override

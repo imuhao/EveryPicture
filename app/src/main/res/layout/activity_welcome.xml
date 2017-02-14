@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:text="©2016 故事还长 blog.csdn.net/imuhao"
+        android:text="imuhao.github.io"
         android:textColor="@color/white"
         android:textSize="14sp" />
 

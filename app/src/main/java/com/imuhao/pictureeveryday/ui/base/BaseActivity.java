@@ -4,20 +4,20 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import com.imuhao.pictureeveryday.R;
+import com.imuhao.pictureeveryday.ui.swipeback.SwipeBackActivity;
 
 /**
  * @author Smile
  * @time 2016/6/22  13:13
  * @desc ${TODD}
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends SwipeBackActivity {
   public void initToolBar(Toolbar toolbar, String title, int icon) {
     toolbar.setTitle(title);// 标题的文字需在setSupportActionBar之前，不然会无效
     toolbar.setTitleTextColor(Color.WHITE);
@@ -27,8 +27,6 @@ public class BaseActivity extends AppCompatActivity {
     ab.setDisplayHomeAsUpEnabled(true);
     ab.setHomeAsUpIndicator(icon);//设置home键的图片
   }
-
-
 
   /**
    * 设置状态栏颜色

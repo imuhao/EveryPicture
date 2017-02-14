@@ -5,10 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-
-
-
     <com.astuetz.PagerSlidingTabStrip
         haha:pstsIndicatorHeight="3dp"
         android:id="@+id/tabs"
@@ -16,7 +12,6 @@
         android:layout_height="40dip"
         haha:pstsIndicatorColor="@color/mainColoe"
        />
-
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

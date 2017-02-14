@@ -1,1 +1,1 @@
-include ':app',':common','okhttputils','imagepicker'
+include ':app',':common'
