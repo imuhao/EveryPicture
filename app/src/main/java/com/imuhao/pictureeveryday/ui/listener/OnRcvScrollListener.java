@@ -12,11 +12,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
  * @desc 监听是否滑动到底部
  */
 public class OnRcvScrollListener extends RecyclerView.OnScrollListener {
-    private onScrollBottomListener mListener;
+    private OnScrollBottomListener mListener;
     private Context mContext;
 
 
-    public OnRcvScrollListener(Context context,onScrollBottomListener listener) {
+    public OnRcvScrollListener(Context context,OnScrollBottomListener listener) {
         mListener = listener;
         mContext = context;
     }

@@ -20,7 +20,7 @@ import com.imuhao.pictureeveryday.ui.activity.ReviewPictureActivity;
 import com.imuhao.pictureeveryday.ui.adapter.NavFuliAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseFragment;
 import com.imuhao.pictureeveryday.ui.listener.OnRcvScrollListener;
-import com.imuhao.pictureeveryday.ui.listener.onScrollBottomListener;
+import com.imuhao.pictureeveryday.ui.listener.OnScrollBottomListener;
 import com.imuhao.pictureeveryday.utils.Contance;
 import com.imuhao.pictureeveryday.utils.HttpRequest;
 import com.imuhao.pictureeveryday.utils.HttpUtils;
@@ -110,7 +110,7 @@ public class PictureFragment extends BaseFragment implements View.OnClickListene
     mAdapter = new NavFuliAdapter(getActivity());
     mRecyclerView.setAdapter(mAdapter);
     mRecyclerView.addOnScrollListener(
-        new OnRcvScrollListener(getActivity(), new onScrollBottomListener() {
+        new OnRcvScrollListener(getActivity(), new OnScrollBottomListener() {
 
           public void onToBottom() {
             //滑动到底部,加载更多

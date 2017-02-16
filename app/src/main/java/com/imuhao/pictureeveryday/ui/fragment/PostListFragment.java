@@ -18,8 +18,8 @@ import com.imuhao.pictureeveryday.ui.adapter.PublicAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseFragment;
 import com.imuhao.pictureeveryday.ui.callback.DataCallBack;
 import com.imuhao.pictureeveryday.ui.listener.OnRcvScrollListener;
-import com.imuhao.pictureeveryday.ui.listener.onItemClickListener;
-import com.imuhao.pictureeveryday.ui.listener.onScrollBottomListener;
+import com.imuhao.pictureeveryday.ui.listener.OnItemClickListener;
+import com.imuhao.pictureeveryday.ui.listener.OnScrollBottomListener;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ import java.util.List;
  * @desc ${TODD}
  */
 public class PostListFragment extends BaseFragment
-    implements onItemClickListener, onScrollBottomListener {
+    implements OnItemClickListener, OnScrollBottomListener {
   public static final String FLAG_KEY = "flag";
   private String flagFragment;
   private RecyclerView recyclerview;

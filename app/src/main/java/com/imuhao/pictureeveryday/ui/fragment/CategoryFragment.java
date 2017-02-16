@@ -32,11 +32,7 @@ public class CategoryFragment extends BaseFragment {
     viewPager.setAdapter(mAdapter);
     PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
     tabs.setViewPager(viewPager);
-    //设置缓存的数目
-    viewPager.setOffscreenPageLimit(0);
-    //设置页面之间的界限
-    viewPager.setPageMargin(20);
-
+    //viewPager.setPageMargin(20);
     //tabs.setOnPageChangeListener(null);
   }
 

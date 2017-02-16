@@ -3,21 +3,35 @@ package com.imuhao.pictureeveryday.ui.base;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import butterknife.ButterKnife;
 import com.imuhao.pictureeveryday.R;
-import com.imuhao.pictureeveryday.ui.swipeback.SwipeBackActivity;
+import com.imuhao.pictureeveryday.ui.view.swipeback.SwipeBackActivity;
 
 /**
  * @author Smile
  * @time 2016/6/22  13:13
  * @desc ${TODD}
  */
-public class BaseActivity extends SwipeBackActivity {
+public abstract class BaseActivity extends SwipeBackActivity {
+
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(getLayoutId());
+    ButterKnife.bind(this);
+    initView();
+  }
+
+  protected abstract int getLayoutId();
+
+  protected abstract void initView();
+
   public void initToolBar(Toolbar toolbar, String title, int icon) {
     toolbar.setTitle(title);// 标题的文字需在setSupportActionBar之前，不然会无效
     toolbar.setTitleTextColor(Color.WHITE);

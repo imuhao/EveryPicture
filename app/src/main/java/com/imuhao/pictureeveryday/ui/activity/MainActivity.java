@@ -3,7 +3,6 @@ package com.imuhao.pictureeveryday.ui.activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -14,7 +13,6 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutFragment;
@@ -38,16 +36,16 @@ public class MainActivity extends BaseActivity {
   private CategoryFragment mCategoryFragment;
   private SettingFragment mSettingFragment;
 
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+  @Override protected int getLayoutId() {
+    return R.layout.activity_main;
+  }
+
+  @Override protected void initView() {
     mContext = this;
-    ButterKnife.bind(this);
+    setSwipeBackEnable(false);
     initToolBar(mToolbar, "每日一图", R.drawable.icon_menu2);
     initNavigationView();
     setMenuSelection(MainTab.PICTURE);
-    //initStatusBar();//设置浸入式状态栏
-
   }
 
   private void initNavigationView() {
@@ -170,7 +168,7 @@ public class MainActivity extends BaseActivity {
     }
     //如果图片Fragment是隐藏的,就显示
     if (mPictureFragment.isHidden()) {
-      mToolbar.setTitle("每日一图");
+      mToolbar.setTitle("图片");
       setMenuSelection(MainTab.PICTURE);
       mNavigationView.getMenu().findItem(R.id.nav_fuli).setChecked(true);
       return;

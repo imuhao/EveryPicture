@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.EssayBean;
-import com.imuhao.pictureeveryday.ui.listener.onItemClickListener;
+import com.imuhao.pictureeveryday.ui.listener.OnItemClickListener;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 
@@ -24,9 +24,9 @@ import java.util.List;
 public class PublicAdapter extends RecyclerView.Adapter<MyHolder> {
     private Context mContext;
     private List<EssayBean> mDatas;
-    private onItemClickListener mListener;
+    private OnItemClickListener mListener;
 
-    public void setListener(onItemClickListener listener) {
+    public void setListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
