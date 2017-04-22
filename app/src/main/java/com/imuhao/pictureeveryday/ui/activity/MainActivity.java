@@ -15,6 +15,7 @@ import android.widget.Toast;
 import butterknife.Bind;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
+import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutFragment;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
@@ -74,14 +75,12 @@ public class MainActivity extends BaseActivity {
                 break;
               case R.id.menu_share:
                 item.setChecked(false);
-                IntentUtils.startAppShareText(mContext, "每日一图",
-                    "每日一图Android客户端,每天更新一张精美的照片.下载地址:fir.im/pictureEveryDay");
+                IntentUtils.startAppShareText(mContext, "每日一图", getString(R.string.share_content));
                 break;
-              /*case R.id.menu_about://关于
-                mToolbar.setTitle(MainTab.ABOUT.getName());
-                item.setChecked(false);
-                setMenuSelection(MainTab.ABOUT);
-                break;*/
+              case R.id.menu_about://关于
+               item.setChecked(false);
+                AboutActivity.start(MainActivity.this);
+                break;
             }
             return true;
           }
@@ -112,14 +111,13 @@ public class MainActivity extends BaseActivity {
       } else {
         transaction.show(mPictureFragment);
       }
-    } else if (MainTab.ABOUT.getName().equals(tab.getName())) {
+    } /*else if (MainTab.ABOUT.getName().equals(tab.getName())) {
       if (mAboutFragment == null) {
         mAboutFragment = AboutFragment.newInstance();
         transaction.add(R.id.fl_content, mAboutFragment);
       } else {
         transaction.show(mAboutFragment);
-      }
-    } else if (MainTab.CATEGORY.getName().equals(tab.getName())) {
+      }}*/ else if (MainTab.CATEGORY.getName().equals(tab.getName())) {
       if (mCategoryFragment == null) {
         mCategoryFragment = CategoryFragment.getInstance();
         transaction.add(R.id.fl_content, mCategoryFragment);
