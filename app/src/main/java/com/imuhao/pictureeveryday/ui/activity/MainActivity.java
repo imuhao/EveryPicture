@@ -38,6 +38,7 @@ public class MainActivity extends BaseActivity
   @Bind(R.id.drawerLayout) DrawerLayout mDrawerLayout;
   @Bind(R.id.title) TextView title;
   @Bind(R.id.iv_open_menu) ImageView ivOpenMenu;
+
   private ImageListFragment mImageListFragment;
   private CategoryFragment mCategoryFragment;
   private SettingFragment mSettingFragment;
@@ -48,7 +49,6 @@ public class MainActivity extends BaseActivity
 
   @Override protected void initView() {
     setSwipeBackEnable(false);
-    //initToolBar(mToolbar, getString(R.string.app_name), R.drawable.icon_menu2);
     initNavigationView();
     setMenuSelection(MainTab.CATEGORY);
   }
