@@ -173,7 +173,7 @@ public class MainActivity extends BaseActivity
 
   @OnClick({ R.id.iv_open_menu }) public void onClick(View view) {
     if (view == ivOpenMenu) {
-      mDrawerLayout.openDrawer(Gravity.LEFT);
+      mDrawerLayout.openDrawer(Gravity.START);
     }
   }
 }
