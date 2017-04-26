@@ -30,9 +30,6 @@ public class CategoryFragment extends BaseFragment {
     viewPager.setAdapter(mAdapter);
     viewPager.setOffscreenPageLimit(Contance.TITLES.length);
     tabLayout.setupWithViewPager(viewPager);
-
-    //PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
-    //tabs.setViewPager(viewPager);
   }
 
   public static CategoryFragment getInstance() {

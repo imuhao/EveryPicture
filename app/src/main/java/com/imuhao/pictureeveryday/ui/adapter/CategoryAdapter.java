@@ -3,7 +3,7 @@ package com.imuhao.pictureeveryday.ui.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
+import android.util.Log;
 import com.imuhao.pictureeveryday.ui.fragment.PostListFragment;
 
 /**
@@ -13,25 +13,23 @@ import com.imuhao.pictureeveryday.ui.fragment.PostListFragment;
  */
 public class CategoryAdapter extends FragmentStatePagerAdapter {
 
-    private String[] title;
+  private String[] title;
 
-    public CategoryAdapter(FragmentManager fm, String[] TITLE) {
-        super(fm);
-        title = TITLE;
-    }
+  public CategoryAdapter(FragmentManager fm, String[] TITLE) {
+    super(fm);
+    title = TITLE;
+  }
 
-    @Override
-    public Fragment getItem(int position) {
-        return PostListFragment.newInstance(title[position]);
-    }
+  @Override public Fragment getItem(int position) {
+    return PostListFragment.newInstance(title[position]);
+  }
 
-    @Override
-    public int getCount() {
-        return title.length;
-    }
+  @Override public int getCount() {
+    return title.length;
+  }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return title[position];
-    }
+  @Override public CharSequence getPageTitle(int position) {
+    Log.d("smile", "Title:" + title[position]);
+    return title[position];
+  }
 }
