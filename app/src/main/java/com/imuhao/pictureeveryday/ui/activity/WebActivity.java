@@ -97,7 +97,6 @@ public class WebActivity extends BaseActivity {
         startActivity(intent);
         break;
     }
-
     return super.onOptionsItemSelected(item);
   }
 
