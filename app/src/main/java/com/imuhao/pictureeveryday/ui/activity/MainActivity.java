@@ -146,10 +146,8 @@ public class MainActivity extends BaseActivity
       case R.id.nav_fuli://图片
         setMenuSelection(MainTab.PICTURE);
         title.setText(MainTab.PICTURE.getName());
-        //initToolBar(mToolbar, MainTab.PICTURE.getName(), R.drawable.icon_menu2);
         break;
       case R.id.menu_category:
-        //initToolBar(mToolbar, MainTab.CATEGORY.getName(), R.drawable.icon_menu2);
         title.setText(getString(R.string.app_name));
         setMenuSelection(MainTab.CATEGORY);
         break;
@@ -157,7 +155,6 @@ public class MainActivity extends BaseActivity
         finish();
         break;
       case R.id.menu_setup://设置
-        //initToolBar(mToolbar, MainTab.SETTING.getName(), R.drawable.icon_menu2);
         title.setText(MainTab.SETTING.getName());
         setMenuSelection(MainTab.SETTING);
         break;

@@ -14,9 +14,9 @@ public class CategoryAdapter extends FragmentStatePagerAdapter {
 
   private String[] title;
 
-  public CategoryAdapter(FragmentManager fm, String[] TITLE) {
+  public CategoryAdapter(FragmentManager fm, String[] title) {
     super(fm);
-    title = TITLE;
+    this.title = title;
   }
 
   @Override public Fragment getItem(int position) {
