@@ -115,7 +115,6 @@ public class WebActivity extends BaseActivity {
     } else {
       webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);   //优先加载缓存
     }
-
     //////////////////////////////
     webView.loadUrl(url);
     //设置了默认在本应用打开，不设置会用浏览器打开的

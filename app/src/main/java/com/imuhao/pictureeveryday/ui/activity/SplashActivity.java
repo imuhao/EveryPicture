@@ -13,5 +13,6 @@ public class SplashActivity extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     startActivity(new Intent(this, MainActivity.class));
+    finish();
   }
 }
