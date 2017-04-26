@@ -16,7 +16,6 @@ import butterknife.Bind;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
-import com.imuhao.pictureeveryday.ui.fragment.AboutFragment;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.ImageListFragment;
 import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
@@ -28,7 +27,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener {
 
-  private long exit_Time;
+  private long exitTime;
 
   @Bind(R.id.toolbar) Toolbar mToolbar;
   @Bind(R.id.navigationView) NavigationView mNavigationView;
@@ -43,7 +42,6 @@ public class MainActivity extends BaseActivity
 
   @Override protected void initView() {
     setSwipeBackEnable(false);
-
     initToolBar(mToolbar, getString(R.string.app_name), R.drawable.icon_menu2);
     initNavigationView();
     setMenuSelection(MainTab.CATEGORY);
@@ -125,9 +123,9 @@ public class MainActivity extends BaseActivity
       return;
     }
     long currentTime = System.currentTimeMillis();
-    if (currentTime - exit_Time > 2000) {
+    if (currentTime - exitTime > 2000) {
       //说明两次点击的间隔大于2秒
-      exit_Time = currentTime;
+      exitTime = currentTime;
       Toast.makeText(MainActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
       return;
     }

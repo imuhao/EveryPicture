@@ -31,8 +31,6 @@ import com.imuhao.pictureeveryday.utils.NetUtils;
  */
 public class WebActivity extends BaseActivity {
 
-  private static final String TAG = WebActivity.class.getSimpleName();
-
   @Bind(R.id.toolbar) Toolbar toolbar;
   @Bind(R.id.webView) WebView webView;
   @Bind(R.id.progressbar) ProgressBar progressbar;
@@ -99,6 +97,7 @@ public class WebActivity extends BaseActivity {
         startActivity(intent);
         break;
     }
+
     return super.onOptionsItemSelected(item);
   }
 
