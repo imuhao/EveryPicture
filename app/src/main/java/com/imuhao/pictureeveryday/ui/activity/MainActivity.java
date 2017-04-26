@@ -9,10 +9,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.Bind;
+import butterknife.OnClick;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
@@ -27,11 +31,13 @@ import java.util.List;
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener {
 
-  private long exitTime;
+  private long exit_Time;
 
   @Bind(R.id.toolbar) Toolbar mToolbar;
   @Bind(R.id.navigationView) NavigationView mNavigationView;
   @Bind(R.id.drawerLayout) DrawerLayout mDrawerLayout;
+  @Bind(R.id.title) TextView title;
+  @Bind(R.id.iv_open_menu) ImageView ivOpenMenu;
   private ImageListFragment mImageListFragment;
   private CategoryFragment mCategoryFragment;
   private SettingFragment mSettingFragment;
@@ -42,7 +48,7 @@ public class MainActivity extends BaseActivity
 
   @Override protected void initView() {
     setSwipeBackEnable(false);
-    initToolBar(mToolbar, getString(R.string.app_name), R.drawable.icon_menu2);
+    //initToolBar(mToolbar, getString(R.string.app_name), R.drawable.icon_menu2);
     initNavigationView();
     setMenuSelection(MainTab.CATEGORY);
   }
@@ -123,9 +129,9 @@ public class MainActivity extends BaseActivity
       return;
     }
     long currentTime = System.currentTimeMillis();
-    if (currentTime - exitTime > 2000) {
+    if (currentTime - exit_Time > 2000) {
       //说明两次点击的间隔大于2秒
-      exitTime = currentTime;
+      exit_Time = currentTime;
       Toast.makeText(MainActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
       return;
     }
@@ -139,17 +145,20 @@ public class MainActivity extends BaseActivity
     switch (item.getItemId()) {
       case R.id.nav_fuli://图片
         setMenuSelection(MainTab.PICTURE);
-        initToolBar(mToolbar, MainTab.PICTURE.getName(), R.drawable.icon_menu2);
+        title.setText(MainTab.PICTURE.getName());
+        //initToolBar(mToolbar, MainTab.PICTURE.getName(), R.drawable.icon_menu2);
         break;
       case R.id.menu_category:
-        initToolBar(mToolbar, MainTab.CATEGORY.getName(), R.drawable.icon_menu2);
+        //initToolBar(mToolbar, MainTab.CATEGORY.getName(), R.drawable.icon_menu2);
+        title.setText(getString(R.string.app_name));
         setMenuSelection(MainTab.CATEGORY);
         break;
       case R.id.menu_exit://退出
         finish();
         break;
       case R.id.menu_setup://设置
-        initToolBar(mToolbar, MainTab.SETTING.getName(), R.drawable.icon_menu2);
+        //initToolBar(mToolbar, MainTab.SETTING.getName(), R.drawable.icon_menu2);
+        title.setText(MainTab.SETTING.getName());
         setMenuSelection(MainTab.SETTING);
         break;
       case R.id.menu_share:
@@ -163,5 +172,11 @@ public class MainActivity extends BaseActivity
         break;
     }
     return true;
+  }
+
+  @OnClick({ R.id.iv_open_menu }) public void onClick(View view) {
+    if (view == ivOpenMenu) {
+      mDrawerLayout.openDrawer(Gravity.LEFT);
+    }
   }
 }

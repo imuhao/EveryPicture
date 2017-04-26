@@ -3,7 +3,6 @@ package com.imuhao.pictureeveryday.ui.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.Log;
 import com.imuhao.pictureeveryday.ui.fragment.PostListFragment;
 
 /**
@@ -29,7 +28,6 @@ public class CategoryAdapter extends FragmentStatePagerAdapter {
   }
 
   @Override public CharSequence getPageTitle(int position) {
-    Log.d("smile", "Title:" + title[position]);
     return title[position];
   }
 }

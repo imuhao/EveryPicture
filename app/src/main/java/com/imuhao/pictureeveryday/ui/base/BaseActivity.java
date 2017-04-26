@@ -37,9 +37,10 @@ public abstract class BaseActivity extends SwipeBackActivity {
     toolbar.setTitleTextColor(Color.WHITE);
     setSupportActionBar(toolbar);
     ActionBar ab = getSupportActionBar();
-    assert ab != null;
-    ab.setDisplayHomeAsUpEnabled(true);
-    ab.setHomeAsUpIndicator(icon);//设置home键的图片
+    if (icon != 0) {
+      ab.setDisplayHomeAsUpEnabled(true);
+      ab.setHomeAsUpIndicator(icon);//设置home键的图片
+    }
   }
 
   /**
