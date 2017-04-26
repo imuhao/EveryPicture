@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
+import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseLazyFragment;
 import com.imuhao.pictureeveryday.utils.ClassUtils;
 
@@ -43,8 +45,6 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseLazyF
     @Override public void run() {
       if (waitDialog == null) {
         waitDialog = new ProgressDialog(getActivity());
-        /*View view = LayoutInflater.from(getContext()).inflate(R.layout.loading_item, null);
-        waitDialog.setView(view);*/
         waitDialog.setMessage("加载数据..");
       }
       waitDialog.show();

@@ -35,6 +35,7 @@ dependencies {
   compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
   compile 'com.squareup.okhttp:okhttp:2.4.0'
   compile 'me.drakeet.support:about:1.0.2'
+  compile 'com.mylhyl:circleDialog:2.0.0'
 
   compile 'com.lzy.net:okgo:+'        //版本号使用 + 可以自动引用最新版
   compile 'com.lzy.net:okrx:+'        //版本号使用 + 可以自动引用最新版
