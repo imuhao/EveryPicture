@@ -5,7 +5,7 @@ package com.imuhao.pictureeveryday.bean;
  * @time 2016/6/22  16:30
  * @desc ${TODD}
  */
-public class NavFuliBean {
+public class ImageBean {
     private String _id;
     private String createdAt;
     private String desc;
@@ -91,7 +91,7 @@ public class NavFuliBean {
 
     @Override
     public String toString() {
-        return "NavFuliBean{" +
+        return "ImageBean{" +
                 "_id='" + _id + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", desc='" + desc + '\'' +

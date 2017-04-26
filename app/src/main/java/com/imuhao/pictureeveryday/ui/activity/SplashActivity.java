@@ -1,19 +1,8 @@
 package com.imuhao.pictureeveryday.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.imuhao.pictureeveryday.R;
-import com.imuhao.pictureeveryday.app.MyApplication;
-import com.imuhao.pictureeveryday.utils.AppUtils;
-import com.imuhao.pictureeveryday.utils.IntentUtils;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * @author Smile
@@ -21,28 +10,8 @@ import butterknife.ButterKnife;
  * @desc ${TODD}
  */
 public class SplashActivity extends Activity {
-
-  @Bind(R.id.tv_app_version) TextView mTvAppVersion;
-  @Bind(R.id.root_rl) RelativeLayout rootRl;
-
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    setContentView(R.layout.activity_welcome);
-    ButterKnife.bind(this);
-    init();
-  }
-
-  private void init() {
-    MyApplication.getHandler().postDelayed(new Runnable() {
-      public void run() {
-        IntentUtils.startActivityFromFinish(SplashActivity.this, MainActivity.class);
-      }
-    }, 2000);
-    AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
-    aa.setDuration(2000);
-    rootRl.setAnimation(aa);
-    mTvAppVersion.setText(AppUtils.getVersionName(this));
+    startActivity(new Intent(this, MainActivity.class));
   }
 }

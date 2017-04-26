@@ -14,4 +14,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="splash_style" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/ic_splash</item>
+    </style>
+
+
+
 </resources>

@@ -1,9 +1,7 @@
 package com.imuhao.pictureeveryday.app;
 
 import android.app.Application;
-import android.os.Handler;
-
-
+import com.lzy.okgo.OkGo;
 
 /**
  * @author Smile
@@ -11,22 +9,12 @@ import android.os.Handler;
  * @desc ${TODD}
  */
 public class MyApplication extends Application {
-    private static Handler mHandler;
-    private static MyApplication application;
 
-    public void onCreate() {
-        super.onCreate();
-        application = this;
-    }
+  public void onCreate() {
+    super.onCreate();
+    OkGo.init(this);
 
-    public static Handler getHandler() {
-        if (mHandler == null) {
-            mHandler = new Handler();
-        }
-        return mHandler;
-    }
+    //OkGo.getInstance();
 
-
-
-
+  }
 }

@@ -10,7 +10,7 @@ import retrofit.Retrofit;
  * @time 2016/6/24  13:31
  * @desc ${TODD}
  */
-public class BuildApi {
+public class Retrofits {
     private static Retrofit mRetrofit;
 
     public static ApiService getApiService() {

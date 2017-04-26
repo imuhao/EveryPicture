@@ -1,6 +1,5 @@
 package com.imuhao.pictureeveryday.ui.activity;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -19,7 +18,7 @@ import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutFragment;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
-import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
+import com.imuhao.pictureeveryday.ui.fragment.ImageListFragment;
 import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
 import com.imuhao.pictureeveryday.utils.ImageUtils;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
@@ -34,7 +33,7 @@ public class MainActivity extends BaseActivity
   @Bind(R.id.toolbar) Toolbar mToolbar;
   @Bind(R.id.navigationView) NavigationView mNavigationView;
   @Bind(R.id.drawerLayout) DrawerLayout mDrawerLayout;
-  private PictureFragment mPictureFragment;
+  private ImageListFragment mImageListFragment;
   private AboutFragment mAboutFragment;
   private CategoryFragment mCategoryFragment;
   private SettingFragment mSettingFragment;
@@ -75,11 +74,11 @@ public class MainActivity extends BaseActivity
     hideAllFragment(transaction);
     //图片
     if (MainTab.PICTURE.getName().equals(tab.getName())) {
-      if (mPictureFragment == null) {
-        mPictureFragment = PictureFragment.newInstance();
-        transaction.add(R.id.fl_content, mPictureFragment);
+      if (mImageListFragment == null) {
+        mImageListFragment = ImageListFragment.newInstance();
+        transaction.add(R.id.fl_content, mImageListFragment);
       } else {
-        transaction.show(mPictureFragment);
+        transaction.show(mImageListFragment);
       }
     }
     //分类

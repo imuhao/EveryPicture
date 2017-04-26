@@ -1,14 +1,18 @@
 package com.imuhao.pictureeveryday.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 import butterknife.Bind;
 import com.imuhao.pictureeveryday.R;
+import com.imuhao.pictureeveryday.bean.ImageBean;
 import com.imuhao.pictureeveryday.ui.adapter.BigImageAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.utils.IntentValues;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +29,18 @@ public class ReviewPictureActivity extends BaseActivity implements ViewPager.OnP
   private List<String> mUrls;
   private int mPosition;
   private BigImageAdapter mAdapter;
+
+  public static void start(Context context, List<ImageBean> mData, int position) {
+    ArrayList<String> urls = new ArrayList<>();
+    Intent intent = new Intent(context, ReviewPictureActivity.class);
+    intent.putExtra(IntentValues.BIG_IMG_POSITION, position);
+
+    for (ImageBean imageBean : mData) {
+      urls.add(imageBean.getUrl());
+    }
+    intent.putStringArrayListExtra(IntentValues.BIG_IMG_LIST, urls);
+    context.startActivity(intent);
+  }
 
   @Override protected int getLayoutId() {
     return R.layout.activity_review_picture;
