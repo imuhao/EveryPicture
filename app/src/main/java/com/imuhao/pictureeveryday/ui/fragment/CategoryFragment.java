@@ -14,13 +14,9 @@ import com.imuhao.pictureeveryday.utils.Contance;
  * @desc 文章分类 ViewPager
  */
 public class CategoryFragment extends BaseFragment {
-  private static CategoryFragment instance;
+
   private ViewPager viewPager;
   private CategoryAdapter mAdapter;
-  public final String[] TITLES = {
-      Contance.FlagAndroid, Contance.FlagIOS, Contance.FlagVideo, Contance.FlagJS,
-      Contance.FlagExpand, Contance.FlagRecommend, Contance.FlagAPP
-  };
 
   @Override protected int getLayoutId() {
     return R.layout.fragment_category;
@@ -28,19 +24,14 @@ public class CategoryFragment extends BaseFragment {
 
   public void initView(View view) {
     viewPager = (ViewPager) view.findViewById(R.id.viewPager);
-    mAdapter = new CategoryAdapter(getChildFragmentManager(), TITLES);
+    mAdapter = new CategoryAdapter(getChildFragmentManager(), Contance.TITLES);
     viewPager.setAdapter(mAdapter);
+    viewPager.setOffscreenPageLimit(Contance.TITLES.length);
     PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
     tabs.setViewPager(viewPager);
-    //viewPager.setPageMargin(20);
-    //tabs.setOnPageChangeListener(null);
   }
 
   public static CategoryFragment getInstance() {
-    if (instance == null) {
-
-      instance = new CategoryFragment();
-    }
-    return instance;
+    return new CategoryFragment();
   }
 }

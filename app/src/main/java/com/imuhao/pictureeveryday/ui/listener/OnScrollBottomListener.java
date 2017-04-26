@@ -6,5 +6,5 @@ package com.imuhao.pictureeveryday.ui.listener;
  * @desc ${TODD}
  */
 public interface OnScrollBottomListener {
-    void onToBottom();
+  void onToBottom();
 }

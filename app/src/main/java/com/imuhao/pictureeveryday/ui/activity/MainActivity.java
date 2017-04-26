@@ -3,6 +3,7 @@ package com.imuhao.pictureeveryday.ui.activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -25,13 +26,14 @@ import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.MainTab;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
-  private Context mContext;
+public class MainActivity extends BaseActivity
+    implements NavigationView.OnNavigationItemSelectedListener {
+
+  private long exit_Time;
+
   @Bind(R.id.toolbar) Toolbar mToolbar;
   @Bind(R.id.navigationView) NavigationView mNavigationView;
   @Bind(R.id.drawerLayout) DrawerLayout mDrawerLayout;
-  long exit_Time;
-
   private PictureFragment mPictureFragment;
   private AboutFragment mAboutFragment;
   private CategoryFragment mCategoryFragment;
@@ -42,49 +44,16 @@ public class MainActivity extends BaseActivity {
   }
 
   @Override protected void initView() {
-    mContext = this;
     setSwipeBackEnable(false);
-    initToolBar(mToolbar, "每日一图", R.drawable.icon_menu2);
+
+    initToolBar(mToolbar, getString(R.string.app_name), R.drawable.icon_menu2);
     initNavigationView();
-    setMenuSelection(MainTab.PICTURE);
+    setMenuSelection(MainTab.CATEGORY);
   }
 
   private void initNavigationView() {
     mNavigationView.setItemIconTintList(null);
-    mNavigationView.setNavigationItemSelectedListener(
-        new NavigationView.OnNavigationItemSelectedListener() {
-          public boolean onNavigationItemSelected(MenuItem item) {
-            item.setChecked(true);//选中点击的item
-            setTitle(item.getTitle());//改变标题
-            mDrawerLayout.closeDrawers();//关闭导航条
-            switch (item.getItemId()) {
-              case R.id.nav_fuli://图片
-                setMenuSelection(MainTab.PICTURE);
-                initToolBar(mToolbar, MainTab.PICTURE.getName(), R.drawable.icon_menu2);
-                break;
-              case R.id.menu_category:
-                initToolBar(mToolbar, MainTab.CATEGORY.getName(), R.drawable.icon_menu2);
-                setMenuSelection(MainTab.CATEGORY);
-                break;
-              case R.id.menu_exit://退出
-                finish();
-                break;
-              case R.id.menu_setup://设置
-                initToolBar(mToolbar, MainTab.SETTING.getName(), R.drawable.icon_menu2);
-                setMenuSelection(MainTab.SETTING);
-                break;
-              case R.id.menu_share:
-                item.setChecked(false);
-                IntentUtils.startAppShareText(mContext, "每日一图", getString(R.string.share_content));
-                break;
-              case R.id.menu_about://关于
-               item.setChecked(false);
-                AboutActivity.start(MainActivity.this);
-                break;
-            }
-            return true;
-          }
-        });
+    mNavigationView.setNavigationItemSelectedListener(this);
     //画一个圆形的Bitmap图片
     ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
     Bitmap srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bbb);
@@ -104,6 +73,7 @@ public class MainActivity extends BaseActivity {
   private void setMenuSelection(MainTab tab) {
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     hideAllFragment(transaction);
+    //图片
     if (MainTab.PICTURE.getName().equals(tab.getName())) {
       if (mPictureFragment == null) {
         mPictureFragment = PictureFragment.newInstance();
@@ -111,20 +81,18 @@ public class MainActivity extends BaseActivity {
       } else {
         transaction.show(mPictureFragment);
       }
-    } /*else if (MainTab.ABOUT.getName().equals(tab.getName())) {
-      if (mAboutFragment == null) {
-        mAboutFragment = AboutFragment.newInstance();
-        transaction.add(R.id.fl_content, mAboutFragment);
-      } else {
-        transaction.show(mAboutFragment);
-      }}*/ else if (MainTab.CATEGORY.getName().equals(tab.getName())) {
+    }
+    //分类
+    else if (MainTab.CATEGORY.getName().equals(tab.getName())) {
       if (mCategoryFragment == null) {
         mCategoryFragment = CategoryFragment.getInstance();
         transaction.add(R.id.fl_content, mCategoryFragment);
       } else {
         transaction.show(mCategoryFragment);
       }
-    } else if (MainTab.SETTING.getName().equals(tab.getName())) {
+    }
+    //设置
+    else if (MainTab.SETTING.getName().equals(tab.getName())) {
       if (mSettingFragment == null) {
         mSettingFragment = SettingFragment.newInstance();
         transaction.add(R.id.fl_content, mSettingFragment);
@@ -144,19 +112,6 @@ public class MainActivity extends BaseActivity {
     for (Fragment fragment : fragments) {
       transaction.hide(fragment);
     }
-
-    /*if (mPictureFragment != null) {
-      transaction.hide(mPictureFragment);
-    }
-    if (mAboutFragment != null) {
-      transaction.hide(mAboutFragment);
-    }
-    if (mCategoryFragment != null) {
-      transaction.hide(mCategoryFragment);
-    }
-    if (mSettingFragment != null) {
-      transaction.hide(mSettingFragment);
-    }*/
   }
 
   @Override public void onBackPressed() {
@@ -165,9 +120,9 @@ public class MainActivity extends BaseActivity {
       return;
     }
     //如果图片Fragment是隐藏的,就显示
-    if (mPictureFragment.isHidden()) {
-      mToolbar.setTitle("图片");
-      setMenuSelection(MainTab.PICTURE);
+    if (mCategoryFragment.isHidden()) {
+      mToolbar.setTitle("文章");
+      setMenuSelection(MainTab.CATEGORY);
       mNavigationView.getMenu().findItem(R.id.nav_fuli).setChecked(true);
       return;
     }
@@ -179,5 +134,38 @@ public class MainActivity extends BaseActivity {
       return;
     }
     finish();
+  }
+
+  @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    item.setChecked(true);//选中点击的item
+    setTitle(item.getTitle());//改变标题
+    mDrawerLayout.closeDrawers();//关闭导航条
+    switch (item.getItemId()) {
+      case R.id.nav_fuli://图片
+        setMenuSelection(MainTab.PICTURE);
+        initToolBar(mToolbar, MainTab.PICTURE.getName(), R.drawable.icon_menu2);
+        break;
+      case R.id.menu_category:
+        initToolBar(mToolbar, MainTab.CATEGORY.getName(), R.drawable.icon_menu2);
+        setMenuSelection(MainTab.CATEGORY);
+        break;
+      case R.id.menu_exit://退出
+        finish();
+        break;
+      case R.id.menu_setup://设置
+        initToolBar(mToolbar, MainTab.SETTING.getName(), R.drawable.icon_menu2);
+        setMenuSelection(MainTab.SETTING);
+        break;
+      case R.id.menu_share:
+        item.setChecked(false);
+        IntentUtils.startAppShareText(this, getString(R.string.app_name),
+            getString(R.string.share_content));
+        break;
+      case R.id.menu_about://关于
+        item.setChecked(false);
+        AboutActivity.start(MainActivity.this);
+        break;
+    }
+    return true;
   }
 }

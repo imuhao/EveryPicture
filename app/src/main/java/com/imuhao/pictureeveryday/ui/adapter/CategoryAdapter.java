@@ -12,6 +12,7 @@ import com.imuhao.pictureeveryday.ui.fragment.PostListFragment;
  * @desc ${TODD}
  */
 public class CategoryAdapter extends FragmentStatePagerAdapter {
+
     private String[] title;
 
     public CategoryAdapter(FragmentManager fm, String[] TITLE) {
