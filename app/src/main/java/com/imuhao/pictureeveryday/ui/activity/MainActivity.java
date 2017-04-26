@@ -34,7 +34,6 @@ public class MainActivity extends BaseActivity
   @Bind(R.id.navigationView) NavigationView mNavigationView;
   @Bind(R.id.drawerLayout) DrawerLayout mDrawerLayout;
   private ImageListFragment mImageListFragment;
-  private AboutFragment mAboutFragment;
   private CategoryFragment mCategoryFragment;
   private SettingFragment mSettingFragment;
 
