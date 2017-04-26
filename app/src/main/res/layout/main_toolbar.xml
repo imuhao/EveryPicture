@@ -12,4 +12,21 @@
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     >
 
+  <ImageView
+      android:id="@+id/iv_open_menu"
+      android:layout_width="28dp"
+      android:layout_height="28dp"
+      android:src="@mipmap/ic_launcher"
+      />
+
+  <TextView
+      android:id="@+id/title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="25dp"
+      android:text="@string/app_name"
+      android:textColor="@color/white"
+      android:textSize="19sp"
+      />
+
 </android.support.v7.widget.Toolbar>

@@ -5,28 +5,34 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF">
+    android:background="#FFF"
+    >
 
-    <RelativeLayout
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      >
+    <include
+        layout="@layout/main_toolbar"/>
+
+
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <include
-            layout="@layout/toolbar"/>
-        <FrameLayout
-            android:id="@+id/fl_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolbar"/>
+        android:layout_below="@id/toolbar"
+        />
 
-    </RelativeLayout>
+  </RelativeLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/drawer_menu"/>
+  <android.support.design.widget.NavigationView
+      android:id="@+id/navigationView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_gravity="start"
+      app:headerLayout="@layout/drawer_header"
+      app:menu="@menu/drawer_menu"
+      />
 
 </android.support.v4.widget.DrawerLayout>
