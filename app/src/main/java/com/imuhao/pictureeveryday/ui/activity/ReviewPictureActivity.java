@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import butterknife.Bind;
 import com.imuhao.pictureeveryday.R;
-import com.imuhao.pictureeveryday.bean.ImageBean;
+import com.imuhao.pictureeveryday.bean.ItemBean;
 import com.imuhao.pictureeveryday.ui.adapter.BigImageAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.utils.IntentValues;
@@ -30,13 +30,13 @@ public class ReviewPictureActivity extends BaseActivity implements ViewPager.OnP
   private int mPosition;
   private BigImageAdapter mAdapter;
 
-  public static void start(Context context, List<ImageBean> mData, int position) {
+  public static void start(Context context, List<ItemBean> mData, int position) {
     ArrayList<String> urls = new ArrayList<>();
     Intent intent = new Intent(context, ReviewPictureActivity.class);
     intent.putExtra(IntentValues.BIG_IMG_POSITION, position);
 
-    for (ImageBean imageBean : mData) {
-      urls.add(imageBean.getUrl());
+    for (ItemBean itemBean : mData) {
+      urls.add(itemBean.getUrl());
     }
     intent.putStringArrayListExtra(IntentValues.BIG_IMG_LIST, urls);
     context.startActivity(intent);

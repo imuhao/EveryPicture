@@ -1,7 +1,7 @@
 package com.imuhao.pictureeveryday.ui.mvp;
 
 import com.imuhao.pictureeveryday.bean.HttpResult;
-import com.imuhao.pictureeveryday.bean.ImageBean;
+import com.imuhao.pictureeveryday.bean.ItemBean;
 import com.imuhao.pictureeveryday.http.Retrofits;
 import com.imuhao.pictureeveryday.http.SmileCallback;
 import java.util.List;
@@ -18,8 +18,8 @@ public class ImageListPresenter extends ImageListContract.Presenter {
     view.showWaitDialog();
     Retrofits.getApiService()
         .getImageList(PAGE_SIZE, index)
-        .enqueue(new SmileCallback<HttpResult<List<ImageBean>>>() {
-          @Override public void onSuccess(HttpResult<List<ImageBean>> data) {
+        .enqueue(new SmileCallback<HttpResult<List<ItemBean>>>() {
+          @Override public void onSuccess(HttpResult<List<ItemBean>> data) {
             view.hideWaitDialog();
             view.showAllImage(data.getResults());
           }

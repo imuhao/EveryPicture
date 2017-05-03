@@ -23,6 +23,7 @@ import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.ImageListFragment;
 import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
+import com.imuhao.pictureeveryday.ui.fragment.TodayFragment;
 import com.imuhao.pictureeveryday.utils.ImageUtils;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.MainTab;
@@ -42,6 +43,7 @@ public class MainActivity extends BaseActivity
   private ImageListFragment mImageListFragment;
   private CategoryFragment mCategoryFragment;
   private SettingFragment mSettingFragment;
+  private TodayFragment mTodayFragment;
 
   @Override protected int getLayoutId() {
     return R.layout.activity_main;
@@ -50,7 +52,7 @@ public class MainActivity extends BaseActivity
   @Override protected void initView() {
     setSwipeBackEnable(false);
     initNavigationView();
-    setMenuSelection(MainTab.CATEGORY);
+    setMenuSelection(MainTab.TODAY);
   }
 
   private void initNavigationView() {
@@ -69,6 +71,71 @@ public class MainActivity extends BaseActivity
         break;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override public void onBackPressed() {
+    if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
+      mDrawerLayout.closeDrawers();
+      return;
+    }
+
+    if (mTodayFragment.isHidden()) {
+      title.setText(getString(R.string.app_name));
+      setMenuSelection(MainTab.TODAY);
+      mNavigationView.getMenu().findItem(R.id.menu_today).setChecked(true);
+      return;
+    }
+    long currentTime = System.currentTimeMillis();
+    if (currentTime - exit_Time > 2000) {
+      //说明两次点击的间隔大于2秒
+      exit_Time = currentTime;
+      Toast.makeText(MainActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
+      return;
+    }
+    finish();
+  }
+
+  @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    item.setChecked(true);//选中点击的item
+    setTitle(item.getTitle());//改变标题
+    mDrawerLayout.closeDrawers();//关闭导航条
+    switch (item.getItemId()) {
+      case R.id.nav_fuli://图片
+        setMenuSelection(MainTab.PICTURE);
+        title.setText(MainTab.PICTURE.getName());
+        break;
+      case R.id.menu_category:
+        title.setText(MainTab.CATEGORY.getName());
+        setMenuSelection(MainTab.CATEGORY);
+        break;
+      case R.id.menu_exit://退出
+        finish();
+        break;
+      case R.id.menu_setup://设置
+        title.setText(MainTab.SETTING.getName());
+        setMenuSelection(MainTab.SETTING);
+        break;
+      case R.id.menu_share:
+        item.setChecked(false);
+        IntentUtils.startAppShareText(this, getString(R.string.app_name),
+            getString(R.string.share_content));
+        break;
+      case R.id.menu_about://关于
+        item.setChecked(false);
+        AboutActivity.start(MainActivity.this);
+        break;
+      case R.id.menu_today://今日
+        title.setText(getString(R.string.app_name));
+        setMenuSelection(MainTab.TODAY);
+        break;
+    }
+    return true;
+  }
+
+  @OnClick({ R.id.iv_open_menu }) public void onClick(View view) {
+    if (view == ivOpenMenu) {
+      mDrawerLayout.openDrawer(Gravity.START);
+    }
   }
 
   //根据菜单状态来显示不同的Fragment
@@ -102,6 +169,15 @@ public class MainActivity extends BaseActivity
         transaction.show(mSettingFragment);
       }
     }
+    //今日干货
+    else if (MainTab.TODAY.equals(tab)) {
+      if (mTodayFragment == null) {
+        mTodayFragment = TodayFragment.newInstance();
+        transaction.add(R.id.fl_content, mTodayFragment);
+      } else {
+        transaction.show(mTodayFragment);
+      }
+    }
     transaction.commit();
   }
 
@@ -113,67 +189,6 @@ public class MainActivity extends BaseActivity
     if (fragments == null || fragments.isEmpty()) return;
     for (Fragment fragment : fragments) {
       transaction.hide(fragment);
-    }
-  }
-
-  @Override public void onBackPressed() {
-    if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
-      mDrawerLayout.closeDrawers();
-      return;
-    }
-    //如果图片Fragment是隐藏的,就显示
-    if (mCategoryFragment.isHidden()) {
-      mToolbar.setTitle("文章");
-      setMenuSelection(MainTab.CATEGORY);
-      mNavigationView.getMenu().findItem(R.id.nav_fuli).setChecked(true);
-      return;
-    }
-    long currentTime = System.currentTimeMillis();
-    if (currentTime - exit_Time > 2000) {
-      //说明两次点击的间隔大于2秒
-      exit_Time = currentTime;
-      Toast.makeText(MainActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
-      return;
-    }
-    finish();
-  }
-
-  @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-    item.setChecked(true);//选中点击的item
-    setTitle(item.getTitle());//改变标题
-    mDrawerLayout.closeDrawers();//关闭导航条
-    switch (item.getItemId()) {
-      case R.id.nav_fuli://图片
-        setMenuSelection(MainTab.PICTURE);
-        title.setText(MainTab.PICTURE.getName());
-        break;
-      case R.id.menu_category:
-        title.setText(getString(R.string.app_name));
-        setMenuSelection(MainTab.CATEGORY);
-        break;
-      case R.id.menu_exit://退出
-        finish();
-        break;
-      case R.id.menu_setup://设置
-        title.setText(MainTab.SETTING.getName());
-        setMenuSelection(MainTab.SETTING);
-        break;
-      case R.id.menu_share:
-        item.setChecked(false);
-        IntentUtils.startAppShareText(this, getString(R.string.app_name),
-            getString(R.string.share_content));
-        break;
-      case R.id.menu_about://关于
-        item.setChecked(false);
-        AboutActivity.start(MainActivity.this);
-        break;
-    }
-    return true;
-  }
-
-  @OnClick({ R.id.iv_open_menu }) public void onClick(View view) {
-    if (view == ivOpenMenu) {
-      mDrawerLayout.openDrawer(Gravity.START);
     }
   }
 }

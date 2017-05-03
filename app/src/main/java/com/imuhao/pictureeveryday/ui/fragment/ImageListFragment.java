@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.imuhao.pictureeveryday.R;
-import com.imuhao.pictureeveryday.bean.ImageBean;
+import com.imuhao.pictureeveryday.bean.ItemBean;
 import com.imuhao.pictureeveryday.ui.adapter.ImageListAdapter;
 import com.imuhao.pictureeveryday.ui.base.mvp.BaseMvpFragment;
 import com.imuhao.pictureeveryday.ui.listener.OnRcvScrollListener;
@@ -33,7 +33,7 @@ public class ImageListFragment extends BaseMvpFragment<ImageListPresenter>
 
   private int index = 1;
 
-  private List<ImageBean> mData;
+  private List<ItemBean> mData;
 
   private ImageListAdapter mAdapter;
   private RecyclerView mRecyclerView;
@@ -82,7 +82,7 @@ public class ImageListFragment extends BaseMvpFragment<ImageListPresenter>
     presenter.loadAllImage(index);
   }
 
-  private void setRecyclerData(List<ImageBean> data) {
+  private void setRecyclerData(List<ItemBean> data) {
     if (isLoadMore) {
       mAdapter.addData(data);
     } else {
@@ -103,7 +103,7 @@ public class ImageListFragment extends BaseMvpFragment<ImageListPresenter>
 
   }
 
-  @Override public void showAllImage(List<ImageBean> results) {
+  @Override public void showAllImage(List<ItemBean> results) {
     setRecyclerData(results);
     swipeRefreshLayout.setRefreshing(false);
   }

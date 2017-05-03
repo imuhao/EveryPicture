@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class ImageListBean {
 
-  private List<ImageBean> results;
+  private List<ItemBean> results;
 
-  public List<ImageBean> getResults() {
+  public List<ItemBean> getResults() {
     return results;
   }
 
-  public void setResults(List<ImageBean> results) {
+  public void setResults(List<ItemBean> results) {
     this.results = results;
   }
 }

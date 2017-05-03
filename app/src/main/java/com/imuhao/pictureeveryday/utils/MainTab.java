@@ -7,7 +7,7 @@ package com.imuhao.pictureeveryday.utils;
  */
 public enum MainTab {
 
-  PICTURE("图片"), ABOUT("关于"), CATEGORY("文章"), SETTING("设置");
+  PICTURE("图片"), ABOUT("关于"), CATEGORY("文章"), SETTING("设置"), TODAY("今日");
 
   private String name;
 

@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.imuhao.pictureeveryday.R;
-import com.imuhao.pictureeveryday.bean.ImageBean;
+import com.imuhao.pictureeveryday.bean.ItemBean;
 import com.imuhao.pictureeveryday.ui.activity.ReviewPictureActivity;
 import com.imuhao.pictureeveryday.utils.DensityUtil;
 import com.like.LikeButton;
@@ -28,12 +28,12 @@ import java.util.List;
 public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.ViewHolder> {
 
   private Context mContext;
-  private List<ImageBean> mData = new ArrayList<>();
+  private List<ItemBean> mData = new ArrayList<>();
   private List<Integer> mHeight;
   private int ScreenHeight;
   private onItemClickListener mListener;
 
-  public void setData(List<ImageBean> data) {
+  public void setData(List<ItemBean> data) {
     mData = data;
     for (int i = 0; i < mData.size() + 1; i++) {
       mHeight.add((int) (ScreenHeight * 0.25 + Math.random() * ScreenHeight * 0.25));
@@ -41,7 +41,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
     notifyDataSetChanged();
   }
 
-  public void addData(List<ImageBean> data) {
+  public void addData(List<ItemBean> data) {
     if (data != null && data.size() > 0) {
       mData.addAll(data);
       for (int i = 0; i < mData.size(); i++) {
@@ -64,7 +64,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
   }
 
   public void onBindViewHolder(ViewHolder holder, final int position) {
-    ImageBean bean = mData.get(position);
+    ItemBean bean = mData.get(position);
     holder.mTime.setText(bean.getPublishedAt().substring(0, 10));
 
     Glide.with(mContext)

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +21,6 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import butterknife.Bind;
 import com.imuhao.pictureeveryday.R;
-import com.imuhao.pictureeveryday.bean.EssayBean;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.utils.NetUtils;
 
@@ -36,9 +34,15 @@ public class WebActivity extends BaseActivity {
   @Bind(R.id.progressbar) ProgressBar progressbar;
 
   //标题
-  private String flagTitle;
-  private String titleContent;
+  private String title;
   private String url;
+
+  public static void start(Context context, String title, String url) {
+    Intent intent = new Intent(context, WebActivity.class);
+    intent.putExtra("title", title);
+    intent.putExtra("url", url);
+    context.startActivity(intent);
+  }
 
   @Override protected int getLayoutId() {
     return R.layout.activity_web;
@@ -51,23 +55,14 @@ public class WebActivity extends BaseActivity {
   }
 
   private void initTitle() {
-    String title;
-    if (TextUtils.isEmpty(flagTitle)) {
-      title = titleContent;
-    } else {
-      title = flagTitle + "+" + titleContent;
-    }
     initToolBar(toolbar, title, R.drawable.ic_back);
   }
 
   private void initIntent() {
     Intent intent = getIntent();
-
     if (intent != null) {
-      EssayBean data = (EssayBean) intent.getSerializableExtra("data");
-      flagTitle = data.getType();
-      titleContent = data.getDesc();
-      url = data.getUrl();
+      title = intent.getStringExtra("title");
+      url = intent.getStringExtra("url");
     }
   }
 

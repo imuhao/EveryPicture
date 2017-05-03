@@ -1,6 +1,6 @@
 package com.imuhao.pictureeveryday.ui.mvp;
 
-import com.imuhao.pictureeveryday.bean.ImageBean;
+import com.imuhao.pictureeveryday.bean.ItemBean;
 import com.imuhao.pictureeveryday.ui.base.mvp.BasePresenter;
 import com.imuhao.pictureeveryday.ui.base.mvp.BaseView;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 public interface ImageListContract {
 
   interface View extends BaseView {
-    void showAllImage(List<ImageBean> results);
+    void showAllImage(List<ItemBean> results);
 
     void loadImageError(String error);
   }

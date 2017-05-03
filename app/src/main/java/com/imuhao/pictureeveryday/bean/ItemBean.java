@@ -5,7 +5,7 @@ package com.imuhao.pictureeveryday.bean;
  * @time 2016/6/22  16:30
  * @desc ${TODD}
  */
-public class ImageBean {
+public class ItemBean {
     private String _id;
     private String createdAt;
     private String desc;
@@ -91,7 +91,7 @@ public class ImageBean {
 
     @Override
     public String toString() {
-        return "ImageBean{" +
+        return "ItemBean{" +
                 "_id='" + _id + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", desc='" + desc + '\'' +
