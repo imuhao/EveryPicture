@@ -29,6 +29,7 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
   private RecyclerView recyclerView;
   private TodayAdapter todayAdapter;
   private ViewStub vsEmpty;
+  private View vsView;
 
   public static TodayFragment newInstance() {
     return new TodayFragment();
@@ -50,11 +51,9 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
     calculateTime();
     loadData();
 
-    //只显示一次的 SnackBar
     new Once(getActivity()).show("today", new Once.OnceCallback() {
       @Override public void onOnce() {
-        Snackbar.make(recyclerView, "点击标题即可进入相应干货页面!", Snackbar.LENGTH_SHORT)
-            .show();
+        Snackbar.make(recyclerView, "点击标题即可进入相应干货页面!", Snackbar.LENGTH_SHORT).show();
       }
     });
   }
@@ -84,8 +83,9 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
    * 显示空数据界面
    */
   private void showEmptyView() {
-    // TODO: 2017/5/4
-    vsEmpty.inflate();
+    if (vsView == null) {
+      vsView = vsEmpty.inflate();
+    }
   }
 
   private void calculateTime() {
@@ -94,7 +94,7 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
     calendar.setTime(today);
     mYear = calendar.get(Calendar.YEAR);
     mMonth = calendar.get(Calendar.MONTH) + 1;
-    mDay = calendar.get(Calendar.DAY_OF_MONTH) + 1;
+    mDay = calendar.get(Calendar.DAY_OF_MONTH);
   }
 
   @Override public void onRefresh() {
