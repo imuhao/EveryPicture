@@ -33,7 +33,6 @@ public class WebActivity extends BaseActivity {
   @Bind(R.id.webView) WebView webView;
   @Bind(R.id.progressbar) ProgressBar progressbar;
 
-  //标题
   private String title;
   private String url;
 
