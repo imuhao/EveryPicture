@@ -54,11 +54,6 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
     new Once(getActivity()).show("today", new Once.OnceCallback() {
       @Override public void onOnce() {
         Snackbar.make(recyclerView, "点击标题即可进入相应干货页面!", Snackbar.LENGTH_SHORT)
-            .setAction("确定", new View.OnClickListener() {
-              @Override public void onClick(View v) {
-
-              }
-            })
             .show();
       }
     });
