@@ -43,8 +43,7 @@ public class PublicAdapter extends RecyclerView.Adapter<PublicAdapter.ViewHolder
 
     View view = inflater.inflate(R.layout.public_item, parent, false);
 
-    ViewHolder holder = new ViewHolder(view);
-    return holder;
+    return new ViewHolder(view);
   }
 
   public void onBindViewHolder(ViewHolder holder, int position) {
