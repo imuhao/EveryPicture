@@ -1,16 +1,18 @@
 package com.imuhao.pictureeveryday.ui.fragment;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewStub;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.GankBean;
 import com.imuhao.pictureeveryday.http.Retrofits;
 import com.imuhao.pictureeveryday.http.SmileCallback;
 import com.imuhao.pictureeveryday.ui.adapter.TodayAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseFragment;
+import com.imuhao.pictureeveryday.utils.Once;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -26,6 +28,7 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
   private SwipeRefreshLayout swipeRefreshLayout;
   private RecyclerView recyclerView;
   private TodayAdapter todayAdapter;
+  private ViewStub vsEmpty;
 
   public static TodayFragment newInstance() {
     return new TodayFragment();
@@ -36,6 +39,7 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
   }
 
   @Override protected void initView(View view) {
+    vsEmpty = (ViewStub) view.findViewById(R.id.vs_empty);
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
     recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -45,6 +49,19 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
     recyclerView.setAdapter(todayAdapter);
     calculateTime();
     loadData();
+
+    //只显示一次的 SnackBar
+    new Once(getActivity()).show("today", new Once.OnceCallback() {
+      @Override public void onOnce() {
+        Snackbar.make(recyclerView, "点击标题即可进入相应干货页面!", Snackbar.LENGTH_SHORT)
+            .setAction("确定", new View.OnClickListener() {
+              @Override public void onClick(View v) {
+
+              }
+            })
+            .show();
+      }
+    });
   }
 
   private void loadData() {
@@ -54,15 +71,26 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
         .enqueue(new SmileCallback<GankBean>() {
           @Override public void onSuccess(GankBean gankBean) {
             swipeRefreshLayout.setRefreshing(false);
-            todayAdapter.setData(gankBean);
-            Log.d("smile", gankBean.category.toString());
+            if (gankBean.category.size() != 0) {
+              todayAdapter.setData(gankBean);
+            } else {
+              showEmptyView();
+            }
           }
 
           @Override public void onError(String error) {
             swipeRefreshLayout.setRefreshing(false);
-            Log.d("smile", error);
+            Snackbar.make(recyclerView, "加载数据失败!", Snackbar.LENGTH_SHORT).show();
           }
         });
+  }
+
+  /**
+   * 显示空数据界面
+   */
+  private void showEmptyView() {
+    // TODO: 2017/5/4
+    vsEmpty.inflate();
   }
 
   private void calculateTime() {
