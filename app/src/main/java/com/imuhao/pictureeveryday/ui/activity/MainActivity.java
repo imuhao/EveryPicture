@@ -58,7 +58,6 @@ public class MainActivity extends BaseActivity
   private void initNavigationView() {
     mNavigationView.setItemIconTintList(null);
     mNavigationView.setNavigationItemSelectedListener(this);
-    //画一个圆形的Bitmap图片
     ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
     Bitmap srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bbb);
     ImageUtils.setCircleUtils(imageView, srcBitmap);

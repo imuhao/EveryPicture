@@ -81,12 +81,12 @@ public class TodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
   }
 
-  class TitleHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+  private class TitleHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     TextView title;
     int mLastPosition;
     private static final int DELAY = 128;
 
-    public TitleHolder(View itemView) {
+    private TitleHolder(View itemView) {
       super(itemView);
       title = (TextView) itemView.findViewById(R.id.title);
       itemView.setOnClickListener(this);

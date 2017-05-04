@@ -9,13 +9,12 @@
     <item
         android:id="@+id/menu_today"
         android:checked="true"
-        android:icon="@drawable/icon_category"
+        android:icon="@mipmap/ic_launcher"
         android:title="今日"
         />
 
     <item
         android:id="@+id/menu_category"
-        android:checked="true"
         android:icon="@drawable/icon_category"
         android:title="文章"
         />
