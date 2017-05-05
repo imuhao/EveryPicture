@@ -35,4 +35,9 @@ dependencies {
   compile 'com.squareup.okhttp:okhttp:2.4.0'
   compile 'me.drakeet.support:about:1.0.2'
 
+  compile 'com.github.markzhai:blockcanary-android:1.5.0'
+  // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
+  debugCompile 'com.github.markzhai:blockcanary-android:1.5.0'
+  releaseCompile 'com.github.markzhai:blockcanary-no-op:1.5.0'
+
 }

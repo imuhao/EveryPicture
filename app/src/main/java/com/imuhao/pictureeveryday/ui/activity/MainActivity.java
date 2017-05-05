@@ -1,7 +1,5 @@
 package com.imuhao.pictureeveryday.ui.activity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.OnClick;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
@@ -24,7 +24,7 @@ import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.ImageListFragment;
 import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
 import com.imuhao.pictureeveryday.ui.fragment.TodayFragment;
-import com.imuhao.pictureeveryday.utils.ImageUtils;
+import com.imuhao.pictureeveryday.utils.GlideCircleTransform;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.MainTab;
 import java.util.List;
@@ -59,8 +59,12 @@ public class MainActivity extends BaseActivity
     mNavigationView.setItemIconTintList(null);
     mNavigationView.setNavigationItemSelectedListener(this);
     ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
-    Bitmap srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bbb);
-    ImageUtils.setCircleUtils(imageView, srcBitmap);
+    Glide.with(imageView.getContext())
+        .load(R.drawable.bbb)
+        .transform(new GlideCircleTransform(imageView.getContext()))
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .dontAnimate()
+        .into(imageView);
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {

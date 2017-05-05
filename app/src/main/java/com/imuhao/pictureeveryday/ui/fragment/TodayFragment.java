@@ -12,7 +12,6 @@ import com.imuhao.pictureeveryday.http.Retrofits;
 import com.imuhao.pictureeveryday.http.SmileCallback;
 import com.imuhao.pictureeveryday.ui.adapter.TodayAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseFragment;
-import com.imuhao.pictureeveryday.utils.Once;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -51,11 +50,6 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
     calculateTime();
     loadData();
 
-    new Once(getActivity()).show("today", new Once.OnceCallback() {
-      @Override public void onOnce() {
-        Snackbar.make(recyclerView, "点击标题即可进入相应干货页面!", Snackbar.LENGTH_LONG).show();
-      }
-    });
   }
 
   private void loadData() {

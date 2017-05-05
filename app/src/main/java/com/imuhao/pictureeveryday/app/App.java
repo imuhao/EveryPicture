@@ -1,6 +1,7 @@
 package com.imuhao.pictureeveryday.app;
 
 import android.app.Application;
+import com.github.moduth.blockcanary.BlockCanary;
 
 /**
  * @author Smile
@@ -11,5 +12,6 @@ public class App extends Application {
 
   public void onCreate() {
     super.onCreate();
+    BlockCanary.install(this, new AppBlockCanaryContext()).start();
   }
 }
