@@ -12,6 +12,11 @@ public class App extends Application {
 
   public void onCreate() {
     super.onCreate();
+    /*getMainLooper().setMessageLogging(new Printer() {
+      @Override public void println(String x) {
+        Log.d("smile", x);
+      }
+    });*/
     BlockCanary.install(this, new AppBlockCanaryContext()).start();
   }
 }

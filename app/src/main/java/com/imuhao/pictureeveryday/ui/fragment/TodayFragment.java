@@ -49,7 +49,6 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
     recyclerView.setAdapter(todayAdapter);
     calculateTime();
     loadData();
-
   }
 
   private void loadData() {
@@ -88,7 +87,7 @@ public class TodayFragment extends BaseFragment implements SwipeRefreshLayout.On
     calendar.setTime(today);
     mYear = calendar.get(Calendar.YEAR);
     mMonth = calendar.get(Calendar.MONTH) + 1;
-    mDay = calendar.get(Calendar.DAY_OF_MONTH);
+    mDay = calendar.get(Calendar.DAY_OF_MONTH) + 1;
   }
 
   @Override public void onRefresh() {
