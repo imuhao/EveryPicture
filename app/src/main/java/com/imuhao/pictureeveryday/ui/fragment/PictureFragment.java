@@ -24,7 +24,7 @@ import java.util.List;
  * @time 2016/6/22  13:23
  * @desc 图片页面
  */
-public class ImageListFragment extends BaseMvpFragment<ImageListPresenter>
+public class PictureFragment extends BaseMvpFragment<ImageListPresenter>
     implements View.OnClickListener, ImageListContract.View, OnScrollBottomListener,
     SwipeRefreshLayout.OnRefreshListener {
 
@@ -34,18 +34,16 @@ public class ImageListFragment extends BaseMvpFragment<ImageListPresenter>
   private int index = 1;
 
   private List<ItemBean> mData;
-
   private ImageListAdapter mAdapter;
   private RecyclerView mRecyclerView;
   private SwipeRefreshLayout swipeRefreshLayout;
   private ImageView loadingImg;
   private RelativeLayout loadingLl;
   private Button mBtnRetryLoad;
-
   private boolean isLoadMore;
 
-  public static ImageListFragment newInstance() {
-    return new ImageListFragment();
+  public static PictureFragment newInstance() {
+    return new PictureFragment();
   }
 
   @Override protected int getLayoutId() {

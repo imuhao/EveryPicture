@@ -26,11 +26,16 @@ public abstract class BaseFragment extends Fragment {
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    if (getArguments() != null) handleData(getArguments());
     initView(view);
     initData();
   }
 
   protected abstract int getLayoutId();
+
+  public void handleData(Bundle bundle) {
+
+  }
 
   protected abstract void initView(View view);
 

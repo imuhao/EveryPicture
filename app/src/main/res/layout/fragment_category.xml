@@ -12,7 +12,6 @@
       android:id="@+id/tablayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      haha:tabBackground="@color/colorPrimary"
       haha:tabIndicatorColor="@color/white"
       haha:tabMode="scrollable"
       haha:tabSelectedTextColor="@color/white"

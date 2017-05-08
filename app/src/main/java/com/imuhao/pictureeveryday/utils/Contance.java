@@ -1,5 +1,7 @@
 package com.imuhao.pictureeveryday.utils;
 
+import android.graphics.Color;
+
 /**
  * @author Smile
  * @time 2016/6/22  16:08
@@ -16,6 +18,9 @@ public class Contance {
         .replaceAll("%i", String.valueOf(index));
   }
 
+  //显示的总天数
+  public static final int SHOW_DAY_SUM = 7;
+
   //标签
   public static final String FlagFragment = "Flag";
   public static final String FlagWelFare = "福利";
@@ -30,5 +35,11 @@ public class Contance {
   public static final String[] TITLES = {
       Contance.FlagAndroid, Contance.FlagIOS, Contance.FlagVideo, Contance.FlagJS,
       Contance.FlagExpand, Contance.FlagRecommend, Contance.FlagAPP
+  };
+
+  public static final int[] COLORS = {
+      Color.parseColor("#54aee6"), Color.parseColor("#34A853"), Color.parseColor("#54aee6"),
+      Color.parseColor("#34A853"), Color.parseColor("#54aee6"), Color.parseColor("#34A853"),
+      Color.parseColor("#54aee6")
   };
 }

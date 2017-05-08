@@ -21,9 +21,9 @@ import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
-import com.imuhao.pictureeveryday.ui.fragment.ImageListFragment;
+import com.imuhao.pictureeveryday.ui.fragment.DayListFragment;
+import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
 import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
-import com.imuhao.pictureeveryday.ui.fragment.TodayFragment;
 import com.imuhao.pictureeveryday.utils.GlideCircleTransform;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.MainTab;
@@ -40,10 +40,10 @@ public class MainActivity extends BaseActivity
   @Bind(R.id.title) TextView title;
   @Bind(R.id.iv_open_menu) ImageView ivOpenMenu;
 
-  private ImageListFragment mImageListFragment;
+  private PictureFragment mPictureFragment;
   private CategoryFragment mCategoryFragment;
   private SettingFragment mSettingFragment;
-  private TodayFragment mTodayFragment;
+  private DayListFragment mDayListFragment;
 
   @Override protected int getLayoutId() {
     return R.layout.activity_main;
@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity
       return;
     }
 
-    if (mTodayFragment.isHidden()) {
+    if (mDayListFragment.isHidden()) {
       title.setText(getString(R.string.app_name));
       setMenuSelection(MainTab.TODAY);
       mNavigationView.getMenu().findItem(R.id.menu_today).setChecked(true);
@@ -147,11 +147,11 @@ public class MainActivity extends BaseActivity
     hideAllFragment(transaction);
     //图片
     if (MainTab.PICTURE.getName().equals(tab.getName())) {
-      if (mImageListFragment == null) {
-        mImageListFragment = ImageListFragment.newInstance();
-        transaction.add(R.id.fl_content, mImageListFragment);
+      if (mPictureFragment == null) {
+        mPictureFragment = PictureFragment.newInstance();
+        transaction.add(R.id.fl_content, mPictureFragment);
       } else {
-        transaction.show(mImageListFragment);
+        transaction.show(mPictureFragment);
       }
     }
     //分类
@@ -174,11 +174,11 @@ public class MainActivity extends BaseActivity
     }
     //今日干货
     else if (MainTab.TODAY.equals(tab)) {
-      if (mTodayFragment == null) {
-        mTodayFragment = TodayFragment.newInstance();
-        transaction.add(R.id.fl_content, mTodayFragment);
+      if (mDayListFragment == null) {
+        mDayListFragment = DayListFragment.newInstance();
+        transaction.add(R.id.fl_content, mDayListFragment);
       } else {
-        transaction.show(mTodayFragment);
+        transaction.show(mDayListFragment);
       }
     }
     transaction.commit();
@@ -187,11 +187,15 @@ public class MainActivity extends BaseActivity
   /**
    * 隐藏所有的Fragment
    */
-  private void hideAllFragment(FragmentTransaction transaction) {
+  @SuppressWarnings("all") private void hideAllFragment(FragmentTransaction transaction) {
     List<Fragment> fragments = getSupportFragmentManager().getFragments();
     if (fragments == null || fragments.isEmpty()) return;
     for (Fragment fragment : fragments) {
       transaction.hide(fragment);
     }
+  }
+
+  public void setToolbarColor(Integer color) {
+    mToolbar.setBackgroundColor(color);
   }
 }

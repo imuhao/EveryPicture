@@ -8,20 +8,23 @@
     android:visibility="gone"
     >
 
-    <ImageView
-        android:id="@+id/loading_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/loading_animation"/>
+  <ImageView
+      android:id="@+id/loading_image"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:background="@drawable/loading_animation"
+      />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/loading_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp"
-        android:text="正在拼命加载..."
-        android:textColor="#29b79b"
-        android:textSize="16dp"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBottom="@id/loading_image"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="18dp"
+      android:text="正在拼命加载..."
+      android:textColor="#FFF"
+      android:textSize="16dp"
+      android:visibility="gone"
+      />
 </RelativeLayout>

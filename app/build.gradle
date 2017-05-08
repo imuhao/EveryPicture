@@ -28,15 +28,14 @@ dependencies {
   compile 'com.github.bumptech.glide:glide:3.7.0'
   compile 'com.github.jd-alexander:LikeButton:0.2.0'
   compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.2'
-  compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
   compile 'com.google.code.gson:gson:2.7'
   compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
   compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
   compile 'com.squareup.okhttp:okhttp:2.4.0'
   compile 'me.drakeet.support:about:1.0.2'
+  compile 'com.leon:lsettingviewlibrary:1.0'
 
   compile 'com.github.markzhai:blockcanary-android:1.5.0'
-  // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
   debugCompile 'com.github.markzhai:blockcanary-android:1.5.0'
   releaseCompile 'com.github.markzhai:blockcanary-no-op:1.5.0'
 

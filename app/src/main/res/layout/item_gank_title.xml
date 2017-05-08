@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="*"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#FFF"
         />
 
     <android.support.v4.widget.Space
@@ -54,7 +54,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#FFF"
         android:textSize="14sp"
         tools:text="叔叔、叔叔，西湖怎么走？"
         />

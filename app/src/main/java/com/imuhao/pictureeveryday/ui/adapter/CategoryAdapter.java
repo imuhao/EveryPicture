@@ -13,10 +13,12 @@ import com.imuhao.pictureeveryday.ui.fragment.PostListFragment;
 public class CategoryAdapter extends FragmentStatePagerAdapter {
 
   private String[] title;
+  private int[] colors;
 
-  public CategoryAdapter(FragmentManager fm, String[] title) {
+  public CategoryAdapter(FragmentManager fm, String[] title, int[] colors) {
     super(fm);
     this.title = title;
+    this.colors = colors;
   }
 
   @Override public Fragment getItem(int position) {
@@ -29,5 +31,9 @@ public class CategoryAdapter extends FragmentStatePagerAdapter {
 
   @Override public CharSequence getPageTitle(int position) {
     return title[position];
+  }
+
+  public Integer getColor(int position) {
+    return colors[position];
   }
 }

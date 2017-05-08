@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.imuhao.pictureeveryday.BuildConfig;
+import com.imuhao.pictureeveryday.utils.T;
 
 /**
  * @author Smile
