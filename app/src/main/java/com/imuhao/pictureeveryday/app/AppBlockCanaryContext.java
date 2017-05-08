@@ -22,10 +22,10 @@ public class AppBlockCanaryContext extends BlockCanaryContext {
   }
 
   @Override public int provideMonitorDuration() {
-    return 500;
+    return 1000;
   }
 
   @Override public int provideBlockThreshold() {
-    return 500;
+    return 1000;
   }
 }
