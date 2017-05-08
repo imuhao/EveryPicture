@@ -21,6 +21,9 @@ public class Contance {
   //显示的总天数
   public static final int SHOW_DAY_SUM = 7;
 
+  public static final String BIG_IMG_POSITION = "bigimgposition";
+  public static final String BIG_IMG_LIST = "bigimglist";
+
   //标签
   public static final String FlagFragment = "Flag";
   public static final String FlagWelFare = "福利";

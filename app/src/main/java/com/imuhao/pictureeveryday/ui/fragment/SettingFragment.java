@@ -1,10 +1,14 @@
 package com.imuhao.pictureeveryday.ui.fragment;
 
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import com.imuhao.pictureeveryday.R;
+import com.imuhao.pictureeveryday.test.DirObserver;
 import com.imuhao.pictureeveryday.ui.base.BaseFragment;
 import com.imuhao.pictureeveryday.utils.T;
 import com.leon.lib.settingview.LSettingItem;
+import java.io.File;
 
 /**
  * @author Smile
@@ -38,4 +42,6 @@ public class SettingFragment extends BaseFragment {
       }
     });
   }
+
+
 }
