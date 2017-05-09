@@ -141,7 +141,7 @@ public class MainActivity extends BaseActivity
     }
   }
 
-  //根据菜单状态来显示不同的Fragment
+  //根据枚举类型切换到不同 dragment
   private void setMenuSelection(MainTab tab) {
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     hideAllFragment(transaction);
@@ -172,7 +172,7 @@ public class MainActivity extends BaseActivity
         transaction.show(mSettingFragment);
       }
     }
-    //今日干货
+    //七日干货列表
     else if (MainTab.TODAY.equals(tab)) {
       if (mDayListFragment == null) {
         mDayListFragment = DayListFragment.newInstance();

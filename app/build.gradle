@@ -17,6 +17,14 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+
+  splits {
+    density {
+      enable true
+      exclude 'ldpi', 'mdpi'
+      compatibleScreens 'normal', 'large', 'xlarge'
+    }
+  }
 }
 
 dependencies {
@@ -38,5 +46,4 @@ dependencies {
   compile 'com.github.markzhai:blockcanary-android:1.5.0'
   debugCompile 'com.github.markzhai:blockcanary-android:1.5.0'
   releaseCompile 'com.github.markzhai:blockcanary-no-op:1.5.0'
-
 }

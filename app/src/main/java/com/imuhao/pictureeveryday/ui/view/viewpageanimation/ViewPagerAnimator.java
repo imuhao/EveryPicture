@@ -18,6 +18,7 @@ public class ViewPagerAnimator<V> implements ViewPager.OnPageChangeListener {
 
   private ViewPager viewPager;
 
+  //开始值
   private V startValue;
   private V endValue;
 
@@ -43,6 +44,7 @@ public class ViewPagerAnimator<V> implements ViewPager.OnPageChangeListener {
 
   public static ViewPagerAnimator<Integer> ofArgb(ViewPager viewPager, Provider<Integer> provider,
       Property<Integer> property) {
+    //创建一个 Evaluator
     @SuppressWarnings("unchecked") final TypeEvaluator<Integer> evaluator = new ArgbEvaluator();
     final Interpolator interpolator = new LinearInterpolator();
     return ofArgb(viewPager, provider, property, evaluator, interpolator);
