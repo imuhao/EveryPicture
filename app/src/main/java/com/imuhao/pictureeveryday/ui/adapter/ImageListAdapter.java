@@ -31,7 +31,11 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
   private List<ItemBean> mData = new ArrayList<>();
   private List<Integer> mHeight;
   private int ScreenHeight;
-  private onItemClickListener mListener;
+  private OnItemClickListener mListener;
+
+  public void setOnItemClickListener(OnItemClickListener listener) {
+    this.mListener = listener;
+  }
 
   public void setData(List<ItemBean> data) {
     mData = data;
@@ -63,7 +67,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
     return holer;
   }
 
-  public void onBindViewHolder(ViewHolder holder, final int position) {
+  public void onBindViewHolder(final ViewHolder holder, final int position) {
     ItemBean bean = mData.get(position);
     holder.mTime.setText(bean.getPublishedAt().substring(0, 10));
 
@@ -76,7 +80,11 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
 
     holder.mImage.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
-        ReviewPictureActivity.start(mContext, mData, position);
+
+        if (mListener != null) {
+          mListener.onItemClick(v, mData, position);
+        }
+
       }
     });
 
@@ -95,8 +103,8 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
     return mData != null ? mData.size() : 0;
   }
 
-  public interface onItemClickListener {
-    void onItemClick(View view, int position);
+  public interface OnItemClickListener {
+    void onItemClick(View view, List<ItemBean> mData, int position);
   }
 
   class ViewHolder extends RecyclerView.ViewHolder {

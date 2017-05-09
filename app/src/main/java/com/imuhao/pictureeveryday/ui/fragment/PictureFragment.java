@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.ItemBean;
+import com.imuhao.pictureeveryday.ui.activity.ReviewPictureActivity;
 import com.imuhao.pictureeveryday.ui.adapter.ImageListAdapter;
 import com.imuhao.pictureeveryday.ui.base.mvp.BaseMvpFragment;
 import com.imuhao.pictureeveryday.ui.listener.OnRcvScrollListener;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 public class PictureFragment extends BaseMvpFragment<ImageListPresenter>
     implements View.OnClickListener, ImageListContract.View, OnScrollBottomListener,
-    SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout.OnRefreshListener, ImageListAdapter.OnItemClickListener {
 
   private static final int INIT_DATA = 0X001;
   private static final int LOAD_ERROR = 0x002;
@@ -73,6 +74,7 @@ public class PictureFragment extends BaseMvpFragment<ImageListPresenter>
         new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     mAdapter = new ImageListAdapter(getActivity());
+    mAdapter.setOnItemClickListener(this);
     mRecyclerView.setAdapter(mAdapter);
 
     mRecyclerView.addOnScrollListener(new OnRcvScrollListener(getActivity(), this));
@@ -122,5 +124,9 @@ public class PictureFragment extends BaseMvpFragment<ImageListPresenter>
   @Override public void onRefresh() {
     index = 1;
     presenter.loadAllImage(index);
+  }
+
+  @Override public void onItemClick(View view, List<ItemBean> mData, int position) {
+    ReviewPictureActivity.lunch(getActivity(), view, mData, position);
   }
 }
