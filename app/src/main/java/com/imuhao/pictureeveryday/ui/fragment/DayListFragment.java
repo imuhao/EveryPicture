@@ -12,6 +12,7 @@ import com.imuhao.pictureeveryday.ui.view.viewpageanimation.Property;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.Provider;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.ViewPagerAnimator;
 import com.imuhao.pictureeveryday.utils.Contance;
+import com.imuhao.pictureeveryday.utils.ThemeUtils;
 
 import static com.imuhao.pictureeveryday.utils.Contance.SHOW_DAY_SUM;
 
@@ -47,6 +48,7 @@ public class DayListFragment extends BaseFragment {
       }
     }, new Property<Integer>() {
       @Override public void set(Integer value) {
+        ThemeUtils.setThemeColor(value);
         viewPager.setBackgroundColor(value);
         activity.setToolbarColor(value);
       }

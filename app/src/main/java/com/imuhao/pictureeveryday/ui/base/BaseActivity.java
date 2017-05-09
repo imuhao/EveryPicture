@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import butterknife.ButterKnife;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.view.swipeback.SwipeBackActivity;
+import com.imuhao.pictureeveryday.utils.ThemeUtils;
 
 /**
  * @author Smile
@@ -35,6 +36,8 @@ public abstract class BaseActivity extends SwipeBackActivity {
   public void initToolBar(Toolbar toolbar, String title, int icon) {
     toolbar.setTitle(title);// 标题的文字需在setSupportActionBar之前，不然会无效
     toolbar.setTitleTextColor(Color.WHITE);
+    toolbar.setBackgroundColor(ThemeUtils.getThemeColor());
+
     setSupportActionBar(toolbar);
     ActionBar ab = getSupportActionBar();
     if (icon != 0) {

@@ -11,6 +11,7 @@ import com.imuhao.pictureeveryday.ui.view.viewpageanimation.Property;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.Provider;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.ViewPagerAnimator;
 import com.imuhao.pictureeveryday.utils.Contance;
+import com.imuhao.pictureeveryday.utils.ThemeUtils;
 
 /**
  * @author Smile
@@ -45,6 +46,7 @@ public class CategoryFragment extends BaseFragment {
 
     Property<Integer> property = new Property<Integer>() {
       @Override public void set(Integer value) {
+        ThemeUtils.setThemeColor(value);
         viewPager.setBackgroundColor(value);
         tabLayout.setBackgroundColor(value);
         activity.setToolbarColor(value);

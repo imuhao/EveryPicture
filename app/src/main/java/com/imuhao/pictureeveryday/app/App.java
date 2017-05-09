@@ -1,6 +1,7 @@
 package com.imuhao.pictureeveryday.app;
 
 import android.app.Application;
+import android.content.Context;
 
 /**
  * @author Smile
@@ -8,9 +9,15 @@ import android.app.Application;
  * @desc ${TODD}
  */
 public class App extends Application {
+  public static Context context;
 
   public void onCreate() {
     super.onCreate();
+    context = this;
     InitializeService.lunch(this);
+  }
+
+  public static Context getContext() {
+    return context;
   }
 }

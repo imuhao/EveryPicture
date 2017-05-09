@@ -24,9 +24,11 @@ import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.DayListFragment;
 import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
 import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
+import com.imuhao.pictureeveryday.ui.listener.AbstractDrawerListener;
 import com.imuhao.pictureeveryday.utils.GlideCircleTransform;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.MainTab;
+import com.imuhao.pictureeveryday.utils.ThemeUtils;
 import java.util.List;
 
 public class MainActivity extends BaseActivity
@@ -56,8 +58,15 @@ public class MainActivity extends BaseActivity
   }
 
   private void initNavigationView() {
+    mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
     mNavigationView.setItemIconTintList(null);
     mNavigationView.setNavigationItemSelectedListener(this);
+    mDrawerLayout.addDrawerListener(new AbstractDrawerListener() {
+      @Override public void onDrawerOpened(View drawerView) {
+        super.onDrawerOpened(drawerView);
+        mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
+      }
+    });
     ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
     Glide.with(imageView.getContext())
         .load(R.drawable.bbb)
