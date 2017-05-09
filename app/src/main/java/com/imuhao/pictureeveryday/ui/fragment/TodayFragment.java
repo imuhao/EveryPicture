@@ -13,6 +13,7 @@ import com.imuhao.pictureeveryday.http.Retrofits;
 import com.imuhao.pictureeveryday.http.SmileCallback;
 import com.imuhao.pictureeveryday.ui.adapter.TodayAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseLazyFragment;
+import com.imuhao.pictureeveryday.utils.ThemeUtils;
 import java.util.Calendar;
 
 /**
@@ -57,7 +58,7 @@ public class TodayFragment extends BaseLazyFragment
     recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     swipeRefreshLayout.setOnRefreshListener(this);
-    swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+    swipeRefreshLayout.setColorSchemeColors(ThemeUtils.getThemeColor());
     todayAdapter = new TodayAdapter();
     recyclerView.setAdapter(todayAdapter);
     //calculateTime();
@@ -69,19 +70,29 @@ public class TodayFragment extends BaseLazyFragment
         .getGankData(mYear, mMonth, mDay)
         .enqueue(new SmileCallback<GankBean>() {
           @Override public void onSuccess(GankBean gankBean) {
-            swipeRefreshLayout.setRefreshing(false);
+            swipeRefreshFinish();
             if (gankBean.category.size() != 0) {
               todayAdapter.setData(gankBean);
+              if (vsEmpty != null) vsEmpty.setVisibility(View.GONE);
             } else {
               showEmptyView();
             }
           }
 
           @Override public void onError(String error) {
-            swipeRefreshLayout.setRefreshing(false);
+            swipeRefreshFinish();
             Snackbar.make(recyclerView, "加载数据失败!", Snackbar.LENGTH_SHORT).show();
           }
         });
+  }
+
+  //让子弹飞一会~
+  private void swipeRefreshFinish() {
+    swipeRefreshLayout.postDelayed(new Runnable() {
+      @Override public void run() {
+        swipeRefreshLayout.setRefreshing(false);
+      }
+    }, 500);
   }
 
   /**

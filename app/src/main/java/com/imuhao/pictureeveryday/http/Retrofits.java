@@ -1,6 +1,6 @@
 package com.imuhao.pictureeveryday.http;
 
-import com.imuhao.pictureeveryday.utils.Contance;
+import com.imuhao.pictureeveryday.utils.Constant;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -15,7 +15,7 @@ public class Retrofits {
 
     public static ApiService getApiService() {
         if (mRetrofit == null) {
-            mRetrofit = new Retrofit.Builder().baseUrl(Contance.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            mRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         }
         return mRetrofit.create(ApiService.class);
     }

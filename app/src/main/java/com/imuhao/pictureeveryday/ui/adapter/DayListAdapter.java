@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.imuhao.pictureeveryday.ui.fragment.TodayFragment;
 import java.util.Calendar;
 
-import static com.imuhao.pictureeveryday.utils.Contance.SHOW_DAY_SUM;
+import static com.imuhao.pictureeveryday.utils.Constant.SHOW_DAY_SUM;
 
 /**
  * @author Smile

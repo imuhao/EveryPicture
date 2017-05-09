@@ -11,10 +11,10 @@ import com.imuhao.pictureeveryday.ui.base.BaseFragment;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.Property;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.Provider;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.ViewPagerAnimator;
-import com.imuhao.pictureeveryday.utils.Contance;
+import com.imuhao.pictureeveryday.utils.Constant;
 import com.imuhao.pictureeveryday.utils.ThemeUtils;
 
-import static com.imuhao.pictureeveryday.utils.Contance.SHOW_DAY_SUM;
+import static com.imuhao.pictureeveryday.utils.Constant.SHOW_DAY_SUM;
 
 /**
  * @author Smile
@@ -44,7 +44,7 @@ public class DayListFragment extends BaseFragment {
     final MainActivity activity = (MainActivity) getActivity();
     animator = ViewPagerAnimator.ofArgb(viewPager, new Provider<Integer>() {
       @Override public Integer get(int position) {
-        return Contance.COLORS[position];
+        return Constant.COLORS[position];
       }
     }, new Property<Integer>() {
       @Override public void set(Integer value) {

@@ -17,7 +17,7 @@ import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.ItemBean;
 import com.imuhao.pictureeveryday.ui.adapter.BigImageAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
-import com.imuhao.pictureeveryday.utils.Contance;
+import com.imuhao.pictureeveryday.utils.Constant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,12 +42,12 @@ public class ReviewPictureActivity extends BaseActivity implements ViewPager.OnP
 
     ArrayList<String> urls = new ArrayList<>();
     Intent intent = new Intent(activity, ReviewPictureActivity.class);
-    intent.putExtra(Contance.BIG_IMG_POSITION, position);
+    intent.putExtra(Constant.BIG_IMG_POSITION, position);
 
     for (ItemBean itemBean : mData) {
       urls.add(itemBean.getUrl());
     }
-    intent.putStringArrayListExtra(Contance.BIG_IMG_LIST, urls);
+    intent.putStringArrayListExtra(Constant.BIG_IMG_LIST, urls);
 
     ActivityOptionsCompat optionsCompat =
         ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view,
@@ -95,8 +95,8 @@ public class ReviewPictureActivity extends BaseActivity implements ViewPager.OnP
   }
 
   private void initIntent() {
-    mUrls = getIntent().getStringArrayListExtra(Contance.BIG_IMG_LIST);
-    mPosition = getIntent().getIntExtra(Contance.BIG_IMG_POSITION, 0);
+    mUrls = getIntent().getStringArrayListExtra(Constant.BIG_IMG_LIST);
+    mPosition = getIntent().getIntExtra(Constant.BIG_IMG_POSITION, 0);
   }
 
   public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

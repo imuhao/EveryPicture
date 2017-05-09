@@ -10,7 +10,7 @@ import com.imuhao.pictureeveryday.ui.base.BaseFragment;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.Property;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.Provider;
 import com.imuhao.pictureeveryday.ui.view.viewpageanimation.ViewPagerAnimator;
-import com.imuhao.pictureeveryday.utils.Contance;
+import com.imuhao.pictureeveryday.utils.Constant;
 import com.imuhao.pictureeveryday.utils.ThemeUtils;
 
 /**
@@ -37,9 +37,9 @@ public class CategoryFragment extends BaseFragment {
   public void initView(View view) {
     tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
     viewPager = (ViewPager) view.findViewById(R.id.viewPager);
-    mAdapter = new CategoryAdapter(getChildFragmentManager(), Contance.TITLES, Contance.COLORS);
+    mAdapter = new CategoryAdapter(getChildFragmentManager(), Constant.TITLES, Constant.COLORS);
     viewPager.setAdapter(mAdapter);
-    viewPager.setOffscreenPageLimit(Contance.TITLES.length);
+    viewPager.setOffscreenPageLimit(Constant.TITLES.length);
     tabLayout.setupWithViewPager(viewPager);
 
     activity = (MainActivity) getActivity();
