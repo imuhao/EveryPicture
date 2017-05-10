@@ -26,7 +26,7 @@ public class CategoryFragment extends BaseFragment {
   private ViewPagerAnimator<Integer> animator;
   private MainActivity activity;
 
-  public static CategoryFragment getInstance() {
+  public static CategoryFragment newInstance() {
     return new CategoryFragment();
   }
 

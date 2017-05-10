@@ -125,7 +125,7 @@ public class PostListFragment extends BaseLazyFragment
 
   public void onItemClick(View view) {
     EssayBean bean = (EssayBean) view.getTag();
-    IntentUtils.startToWebActivity(mContext, WebActivity.class, bean);
+    IntentUtils.startToWebActivity(mContext, bean);
   }
 
   //滑动到底部

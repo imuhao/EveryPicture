@@ -2,6 +2,7 @@ package com.imuhao.pictureeveryday.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.EssayBean;
 import com.imuhao.pictureeveryday.ui.activity.WebActivity;
 
@@ -12,15 +13,16 @@ import com.imuhao.pictureeveryday.ui.activity.WebActivity;
  */
 public class IntentUtils {
 
-  public static void startAppShareText(Context context, String shareTitle, String shareText) {
+  //分享应用
+  public static void startAppShareText(Context context) {
     Intent shareIntent = new Intent(Intent.ACTION_SEND);
     shareIntent.setType("text/plain"); // 纯文本
-    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareTitle);
-    shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-    context.startActivity(Intent.createChooser(shareIntent, "将每日一图分享到"));
+    shareIntent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name));
+    shareIntent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.share_content));
+    context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.app_name)));
   }
 
-  public static void startToWebActivity(Context context, Class clz, EssayBean data) {
+  public static void startToWebActivity(Context context, EssayBean data) {
     WebActivity.start(context, data.getDesc(), data.getUrl());
   }
 }

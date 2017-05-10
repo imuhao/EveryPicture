@@ -108,34 +108,29 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-    item.setChecked(true);//选中点击的item
-    setTitle(item.getTitle());//改变标题
     mDrawerLayout.closeDrawers();//关闭导航条
     switch (item.getItemId()) {
       case R.id.nav_fuli://图片
         setMenuSelection(MainTab.PICTURE);
         title.setText(MainTab.PICTURE.getName());
         break;
-      case R.id.menu_category:
+      case R.id.menu_category: //分类
         title.setText(MainTab.CATEGORY.getName());
         setMenuSelection(MainTab.CATEGORY);
         break;
       case R.id.menu_exit://退出
         finish();
         break;
-      case R.id.menu_setup://设置
+      case R.id.menu_setting://设置
         title.setText(MainTab.SETTING.getName());
         setMenuSelection(MainTab.SETTING);
         break;
-      case R.id.menu_share:
-        item.setChecked(false);
-        IntentUtils.startAppShareText(this, getString(R.string.app_name),
-            getString(R.string.share_content));
-        break;
+      case R.id.menu_share://分享
+        IntentUtils.startAppShareText(this);
+        return false;
       case R.id.menu_about://关于
-        item.setChecked(false);
         AboutActivity.start(MainActivity.this);
-        break;
+        return false;
       case R.id.menu_today://今日
         title.setText(getString(R.string.app_name));
         setMenuSelection(MainTab.TODAY);
@@ -150,45 +145,14 @@ public class MainActivity extends BaseActivity
     }
   }
 
-  //根据枚举类型切换到不同 dragment
   private void setMenuSelection(MainTab tab) {
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     hideAllFragment(transaction);
-    //图片
-    if (MainTab.PICTURE.getName().equals(tab.getName())) {
-      if (mPictureFragment == null) {
-        mPictureFragment = PictureFragment.newInstance();
-        transaction.add(R.id.fl_content, mPictureFragment);
-      } else {
-        transaction.show(mPictureFragment);
-      }
-    }
-    //分类
-    else if (MainTab.CATEGORY.getName().equals(tab.getName())) {
-      if (mCategoryFragment == null) {
-        mCategoryFragment = CategoryFragment.getInstance();
-        transaction.add(R.id.fl_content, mCategoryFragment);
-      } else {
-        transaction.show(mCategoryFragment);
-      }
-    }
-    //设置
-    else if (MainTab.SETTING.getName().equals(tab.getName())) {
-      if (mSettingFragment == null) {
-        mSettingFragment = SettingFragment.newInstance();
-        transaction.add(R.id.fl_content, mSettingFragment);
-      } else {
-        transaction.show(mSettingFragment);
-      }
-    }
-    //近七日干货列表
-    else if (MainTab.TODAY.equals(tab)) {
-      if (mDayListFragment == null) {
-        mDayListFragment = DayListFragment.newInstance();
-        transaction.add(R.id.fl_content, mDayListFragment);
-      } else {
-        transaction.show(mDayListFragment);
-      }
+    Fragment fragment = tab.getFragment();
+    if (!fragment.isAdded()) {
+      transaction.add(R.id.fl_content, fragment);
+    } else {
+      transaction.show(fragment);
     }
     transaction.commit();
   }
@@ -200,7 +164,7 @@ public class MainActivity extends BaseActivity
     List<Fragment> fragments = getSupportFragmentManager().getFragments();
     if (fragments == null || fragments.isEmpty()) return;
     for (Fragment fragment : fragments) {
-      transaction.hide(fragment);
+      if (fragment.isVisible()) transaction.hide(fragment);
     }
   }
 
