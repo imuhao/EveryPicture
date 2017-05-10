@@ -85,9 +85,11 @@ public class PictureFragment extends BaseMvpFragment<ImageListPresenter>
   private void setRecyclerData(List<ItemBean> data) {
     if (isLoadMore) {
       mAdapter.addData(data);
+      mAdapter.notifyDataSetChanged();
     } else {
       mData = data;
       mAdapter.setData(data);
+      mAdapter.notifyDataSetChanged();
     }
   }
 

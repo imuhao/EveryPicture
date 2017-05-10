@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.EssayBean;
 import com.imuhao.pictureeveryday.ui.listener.OnItemClickListener;
@@ -40,9 +39,7 @@ public class PublicAdapter extends RecyclerView.Adapter<PublicAdapter.ViewHolder
 
   public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     LayoutInflater inflater = LayoutInflater.from(mContext);
-
     View view = inflater.inflate(R.layout.public_item, parent, false);
-
     return new ViewHolder(view);
   }
 
@@ -52,11 +49,11 @@ public class PublicAdapter extends RecyclerView.Adapter<PublicAdapter.ViewHolder
     holder.collect.setLiked(false);
     holder.collect.setOnLikeListener(new OnLikeListener() {
       @Override public void liked(LikeButton likeButton) {
-        Toast.makeText(mContext, "收藏成功", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, "收藏成功", Toast.LENGTH_SHORT).show();
       }
 
       @Override public void unLiked(LikeButton likeButton) {
-        Toast.makeText(mContext, "取消收藏", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, "取消收藏", Toast.LENGTH_SHORT).show();
       }
     });
     holder.time_tv.setText(bean.getPublishedAt().substring(0, 10));

@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.ItemBean;
-import com.imuhao.pictureeveryday.ui.activity.ReviewPictureActivity;
 import com.imuhao.pictureeveryday.utils.DensityUtil;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
@@ -42,7 +41,6 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
     for (int i = 0; i < mData.size() + 1; i++) {
       mHeight.add((int) (ScreenHeight * 0.25 + Math.random() * ScreenHeight * 0.25));
     }
-    notifyDataSetChanged();
   }
 
   public void addData(List<ItemBean> data) {
@@ -51,7 +49,6 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
       for (int i = 0; i < mData.size(); i++) {
         mHeight.add((int) (ScreenHeight * 0.25 + Math.random() * ScreenHeight * 0.25));
       }
-      notifyDataSetChanged();
     }
   }
 
@@ -63,8 +60,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
 
   public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(mContext).inflate(R.layout.navfuil_item, null);
-    ViewHolder holer = new ViewHolder(view);
-    return holer;
+    return new ViewHolder(view);
   }
 
   public void onBindViewHolder(final ViewHolder holder, final int position) {
@@ -80,11 +76,9 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
 
     holder.mImage.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
-
         if (mListener != null) {
           mListener.onItemClick(v, mData, position);
         }
-
       }
     });
 

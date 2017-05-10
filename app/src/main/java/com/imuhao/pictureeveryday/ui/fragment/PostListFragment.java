@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.EssayBean;
 import com.imuhao.pictureeveryday.http.SmileApi;
-import com.imuhao.pictureeveryday.ui.activity.WebActivity;
 import com.imuhao.pictureeveryday.ui.adapter.PublicAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseLazyFragment;
 import com.imuhao.pictureeveryday.ui.callback.DataCallBack;
@@ -91,8 +90,7 @@ public class PostListFragment extends BaseLazyFragment
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
     swipeRefreshLayout.setOnRefreshListener(this);
     swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.mainColoe));
-    recyclerview.setLayoutManager(
-        new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+    recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
     recyclerview.setItemAnimator(new DefaultItemAnimator());
     recyclerview.addOnScrollListener(new OnRcvScrollListener(mContext, this));
   }

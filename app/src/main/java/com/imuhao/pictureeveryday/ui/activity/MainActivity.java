@@ -109,6 +109,7 @@ public class MainActivity extends BaseActivity
 
   @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     mDrawerLayout.closeDrawers();//关闭导航条
+
     switch (item.getItemId()) {
       case R.id.nav_fuli://图片
         setMenuSelection(MainTab.PICTURE);
