@@ -181,7 +181,7 @@ public class MainActivity extends BaseActivity
         transaction.show(mSettingFragment);
       }
     }
-    //七日干货列表
+    //近七日干货列表
     else if (MainTab.TODAY.equals(tab)) {
       if (mDayListFragment == null) {
         mDayListFragment = DayListFragment.newInstance();

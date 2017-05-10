@@ -39,11 +39,11 @@ public class CategoryFragment extends BaseFragment {
     viewPager = (ViewPager) view.findViewById(R.id.viewPager);
     mAdapter = new CategoryAdapter(getChildFragmentManager(), Constant.TITLES, Constant.COLORS);
     viewPager.setAdapter(mAdapter);
-    viewPager.setOffscreenPageLimit(Constant.TITLES.length);
+    viewPager.setOffscreenPageLimit(mAdapter.getCount());
     tabLayout.setupWithViewPager(viewPager);
 
+    //添加 ViewPager 切换动画
     activity = (MainActivity) getActivity();
-
     Property<Integer> property = new Property<Integer>() {
       @Override public void set(Integer value) {
         ThemeUtils.setThemeColor(value);

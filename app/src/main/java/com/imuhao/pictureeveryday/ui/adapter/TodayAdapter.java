@@ -2,6 +2,7 @@ package com.imuhao.pictureeveryday.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +27,9 @@ import java.util.List;
 public class TodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   private static final int TITLE = 0X001;
-  private static final int CATEGORY = 0x002;
   private static final int IMAGE = 0x003;
+  private static final int CATEGORY = 0x002;
+
   private List<ItemViewBean> mData = new ArrayList<>();
 
   @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,10 +70,10 @@ public class TodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     return mData.get(position).type;
   }
 
-  class CategoryHolder extends RecyclerView.ViewHolder {
+  private class CategoryHolder extends RecyclerView.ViewHolder {
     TextView category;
 
-    public CategoryHolder(View itemView) {
+    private CategoryHolder(View itemView) {
       super(itemView);
       category = (TextView) itemView.findViewById(R.id.category);
     }
@@ -102,7 +104,7 @@ public class TodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
       WebActivity.start(itemView.getContext(), itemViewBean.title, itemViewBean.url);
     }
 
-    public void showItemAnim(final View view, final int position) {
+    private void showItemAnim(final View view, final int position) {
       final Context context = view.getContext();
       if (position > mLastPosition) {
         view.setAlpha(0);
@@ -128,10 +130,10 @@ public class TodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
   }
 
-  class ImageHolder extends RecyclerView.ViewHolder {
+  private class ImageHolder extends RecyclerView.ViewHolder {
     RatioImageView imageView;
 
-    public ImageHolder(View itemView) {
+    private ImageHolder(View itemView) {
       super(itemView);
       imageView = (RatioImageView) itemView.findViewById(R.id.image);
     }
