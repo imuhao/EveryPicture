@@ -37,11 +37,11 @@ public class AboutActivity extends AbsAboutActivity {
 
   @Override protected void onItemsCreated(@NonNull Items items) {
     items.add(new Category("Developers"));
-    items.add(new Contributor(R.drawable.bbb, "Smile", "Android 开发工程师"));
+    items.add(new Contributor(R.drawable.bbb, "CaiMuhao", "Android 开发工程师"));
     items.add(new Line());
 
     items.add(new Category("About"));
-    items.add(new Card(" 每日一图是由 Smile 开发的一款图片浏览应用", "分享"));
+    items.add(new Card(" LookGank 是由 CaiMuhao 开发的一款应用", "分享"));
     items.add(new Line());
   }
 
