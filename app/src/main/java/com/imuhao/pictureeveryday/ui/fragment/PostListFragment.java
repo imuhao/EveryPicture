@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.EssayBean;
 import com.imuhao.pictureeveryday.http.SmileApi;
@@ -63,7 +62,7 @@ public class PostListFragment extends BaseLazyFragment
 
     public void onError(int width, String error) {
       swipeRefreshLayout.setRefreshing(false);
-      Toast.makeText(getActivity(), "数据加载失败!", Toast.LENGTH_SHORT).show();
+      showToast("数据加载失败!");
     }
   };
 
@@ -92,7 +91,7 @@ public class PostListFragment extends BaseLazyFragment
     swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.mainColoe));
     recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
     recyclerview.setItemAnimator(new DefaultItemAnimator());
-    recyclerview.addOnScrollListener(new OnRcvScrollListener(mContext, this));
+    recyclerview.addOnScrollListener(new OnRcvScrollListener(getActivity(), this));
   }
 
   private void loadData(boolean isClear) {
@@ -123,7 +122,7 @@ public class PostListFragment extends BaseLazyFragment
 
   public void onItemClick(View view) {
     EssayBean bean = (EssayBean) view.getTag();
-    IntentUtils.startToWebActivity(mContext, bean);
+    IntentUtils.startToWebActivity(getActivity(), bean);
   }
 
   //滑动到底部

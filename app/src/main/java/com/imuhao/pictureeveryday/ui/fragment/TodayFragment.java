@@ -24,7 +24,7 @@ import java.util.Calendar;
 public class TodayFragment extends BaseLazyFragment
     implements SwipeRefreshLayout.OnRefreshListener {
 
-  int mYear, mMonth, mDay;
+  private int mYear, mMonth, mDay;
 
   private SwipeRefreshLayout swipeRefreshLayout;
   private RecyclerView recyclerView;

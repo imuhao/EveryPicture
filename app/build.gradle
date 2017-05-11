@@ -18,13 +18,13 @@ android {
     }
   }
 
-  splits {
+  /*splits {
     density {
       enable true
       exclude 'ldpi', 'mdpi'
       compatibleScreens 'normal', 'large', 'xlarge'
     }
-  }
+  }*/
 }
 
 dependencies {

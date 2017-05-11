@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.bumptech.glide.Glide;
@@ -28,6 +27,7 @@ import com.imuhao.pictureeveryday.ui.listener.AbstractDrawerListener;
 import com.imuhao.pictureeveryday.utils.GlideCircleTransform;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.MainTab;
+import com.imuhao.pictureeveryday.utils.T;
 import com.imuhao.pictureeveryday.utils.ThemeUtils;
 import java.util.List;
 
@@ -99,7 +99,7 @@ public class MainActivity extends BaseActivity
     long currentTime = System.currentTimeMillis();
     if (currentTime - exit_Time > 2000) {
       exit_Time = currentTime;
-      Toast.makeText(MainActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
+      T.show(MainActivity.this, "再按一次退出应用");
       return;
     }
     super.onBackPressed();

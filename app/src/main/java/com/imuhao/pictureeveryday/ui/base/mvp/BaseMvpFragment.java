@@ -5,10 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
-import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseLazyFragment;
 import com.imuhao.pictureeveryday.utils.ClassUtils;
 
@@ -64,7 +61,4 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseLazyF
     }
   }
 
-  public void showToast(String message) {
-    Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-  }
 }
