@@ -1,7 +1,6 @@
 package com.imuhao.pictureeveryday.utils;
 
 import android.support.v4.app.Fragment;
-import com.imuhao.pictureeveryday.ui.fragment.AboutFragment;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.DayListFragment;
 import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
@@ -14,9 +13,9 @@ import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
  */
 public enum MainTab {
 
-  PICTURE("图片", PictureFragment.newInstance()), ABOUT("关于", AboutFragment.newInstance()), CATEGORY(
-      "文章", CategoryFragment.newInstance()), SETTING("设置", SettingFragment.newInstance()), TODAY(
-      "今日", DayListFragment.newInstance());
+  PICTURE("图片", PictureFragment.newInstance()), ABOUT("关于", null), CATEGORY("文章",
+      CategoryFragment.newInstance()), SETTING("设置", SettingFragment.newInstance()), TODAY("今日",
+      DayListFragment.newInstance());
 
   private String name;
   private Fragment fragment;

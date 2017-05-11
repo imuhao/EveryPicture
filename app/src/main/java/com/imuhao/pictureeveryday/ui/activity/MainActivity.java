@@ -90,8 +90,7 @@ public class MainActivity extends BaseActivity
       mDrawerLayout.closeDrawers();
       return;
     }
-
-    if (mDayListFragment.isHidden()) {
+    if (MainTab.TODAY.getFragment().isHidden()) {
       title.setText(getString(R.string.app_name));
       setMenuSelection(MainTab.TODAY);
       mNavigationView.getMenu().findItem(R.id.menu_today).setChecked(true);
@@ -99,17 +98,15 @@ public class MainActivity extends BaseActivity
     }
     long currentTime = System.currentTimeMillis();
     if (currentTime - exit_Time > 2000) {
-      //说明两次点击的间隔大于2秒
       exit_Time = currentTime;
       Toast.makeText(MainActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
       return;
     }
-    finish();
+    super.onBackPressed();
   }
 
   @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     mDrawerLayout.closeDrawers();//关闭导航条
-
     switch (item.getItemId()) {
       case R.id.nav_fuli://图片
         setMenuSelection(MainTab.PICTURE);
