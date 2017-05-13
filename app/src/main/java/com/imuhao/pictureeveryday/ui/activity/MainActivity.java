@@ -15,13 +15,13 @@ import butterknife.OnClick;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.imuhao.pictureeveryday.R;
+import com.imuhao.pictureeveryday.ui.Fragments;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
 import com.imuhao.pictureeveryday.ui.listener.AbstractDrawerListener;
 import com.imuhao.pictureeveryday.utils.FragmentUtil;
 import com.imuhao.pictureeveryday.utils.GlideCircleTransform;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
-import com.imuhao.pictureeveryday.utils.MainTab;
 import com.imuhao.pictureeveryday.utils.T;
 import com.imuhao.pictureeveryday.utils.ThemeUtils;
 
@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity
 
     setSwipeBackEnable(false);
     initNavigationView();
-    setMenuSelection(MainTab.TODAY);
+    setMenuSelection(Fragments.TODAY);
   }
 
   private void initNavigationView() {
@@ -83,12 +83,13 @@ public class MainActivity extends BaseActivity
       mDrawerLayout.closeDrawers();
       return;
     }
-    if (MainTab.TODAY.getFragment().isHidden()) {
+
+    /*if (Fragments.TODAY.getFragment().isHidden()) {
       title.setText(getString(R.string.app_name));
-      setMenuSelection(MainTab.TODAY);
+      setMenuSelection(Fragments.TODAY);
       mNavigationView.getMenu().findItem(R.id.menu_today).setChecked(true);
       return;
-    }
+    }*/
     long currentTime = System.currentTimeMillis();
     if (currentTime - exit_Time > 2000) {
       exit_Time = currentTime;
@@ -102,19 +103,19 @@ public class MainActivity extends BaseActivity
     mDrawerLayout.closeDrawers();//关闭导航条
     switch (item.getItemId()) {
       case R.id.nav_fuli://图片
-        setMenuSelection(MainTab.PICTURE);
-        title.setText(MainTab.PICTURE.getName());
+        setMenuSelection(Fragments.PICTURE);
+        title.setText(Fragments.PICTURE);
         break;
       case R.id.menu_category: //分类
-        title.setText(MainTab.CATEGORY.getName());
-        setMenuSelection(MainTab.CATEGORY);
+        title.setText(Fragments.CATEGORY);
+        setMenuSelection(Fragments.CATEGORY);
         break;
       case R.id.menu_exit://退出
         finish();
         break;
       case R.id.menu_setting://设置
-        title.setText(MainTab.SETTING.getName());
-        setMenuSelection(MainTab.SETTING);
+        title.setText(Fragments.SETTING);
+        setMenuSelection(Fragments.SETTING);
         break;
       case R.id.menu_share://分享
         IntentUtils.startAppShareText(this);
@@ -124,7 +125,7 @@ public class MainActivity extends BaseActivity
         return false;
       case R.id.menu_today://今日
         title.setText(getString(R.string.app_name));
-        setMenuSelection(MainTab.TODAY);
+        setMenuSelection(Fragments.TODAY);
         break;
     }
     return true;
@@ -136,7 +137,7 @@ public class MainActivity extends BaseActivity
     }
   }
 
-  private void setMenuSelection(MainTab tab) {
+  private void setMenuSelection(@Fragments String tab) {
     fragmentUtil.hide();
     fragmentUtil.show(tab);
   }

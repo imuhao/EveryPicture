@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import com.imuhao.pictureeveryday.R;
+import com.imuhao.pictureeveryday.ui.Fragments;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.DayListFragment;
 import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
@@ -31,10 +32,10 @@ public class FragmentUtil {
   /**
    * 显示指定 fragment
    */
-  public void show(MainTab tab) {
+  public void show(String tab) {
     FragmentTransaction transaction = fragmentManager.beginTransaction();
     //图片
-    if (MainTab.PICTURE.equals(tab)) {
+    if (Fragments.PICTURE.equals(tab)) {
       if (mPictureFragment == null) {
         mPictureFragment = PictureFragment.newInstance();
         transaction.add(R.id.fl_content, mPictureFragment);
@@ -43,7 +44,7 @@ public class FragmentUtil {
       }
     }
     //分类
-    else if (MainTab.CATEGORY.equals(tab)) {
+    else if (Fragments.CATEGORY.equals(tab)) {
       if (mCategoryFragment == null) {
         mCategoryFragment = CategoryFragment.newInstance();
         transaction.add(R.id.fl_content, mCategoryFragment);
@@ -52,7 +53,7 @@ public class FragmentUtil {
       }
     }
     //设置
-    else if (MainTab.SETTING.equals(tab)) {
+    else if (Fragments.SETTING.equals(tab)) {
       if (mSettingFragment == null) {
         mSettingFragment = SettingFragment.newInstance();
         transaction.add(R.id.fl_content, mSettingFragment);
@@ -61,7 +62,7 @@ public class FragmentUtil {
       }
     }
     //今日
-    else if (MainTab.TODAY.equals(tab)) {
+    else if (Fragments.TODAY.equals(tab)) {
       if (mDayListFragment == null) {
         mDayListFragment = DayListFragment.newInstance();
         transaction.add(R.id.fl_content, mDayListFragment);
