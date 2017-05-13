@@ -32,4 +32,8 @@ public enum MainTab {
   public Fragment getFragment() {
     return fragment;
   }
+
+  @Override public String toString() {
+    return "MainTab{" + "name='" + name + '\'' + ", fragment=" + fragment + '}';
+  }
 }

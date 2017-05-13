@@ -2,8 +2,6 @@ package com.imuhao.pictureeveryday.ui.activity;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
@@ -19,17 +17,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
 import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
-import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
-import com.imuhao.pictureeveryday.ui.fragment.DayListFragment;
-import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
-import com.imuhao.pictureeveryday.ui.fragment.SettingFragment;
 import com.imuhao.pictureeveryday.ui.listener.AbstractDrawerListener;
+import com.imuhao.pictureeveryday.utils.FragmentUtil;
 import com.imuhao.pictureeveryday.utils.GlideCircleTransform;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.MainTab;
 import com.imuhao.pictureeveryday.utils.T;
 import com.imuhao.pictureeveryday.utils.ThemeUtils;
-import java.util.List;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,16 +36,15 @@ public class MainActivity extends BaseActivity
   @Bind(R.id.title) TextView title;
   @Bind(R.id.iv_open_menu) ImageView ivOpenMenu;
 
-  private PictureFragment mPictureFragment;
-  private CategoryFragment mCategoryFragment;
-  private SettingFragment mSettingFragment;
-  private DayListFragment mDayListFragment;
+  private FragmentUtil fragmentUtil;
 
   @Override protected int getLayoutId() {
     return R.layout.activity_main;
   }
 
   @Override protected void initView() {
+    fragmentUtil = new FragmentUtil(getSupportFragmentManager());
+
     setSwipeBackEnable(false);
     initNavigationView();
     setMenuSelection(MainTab.TODAY);
@@ -144,26 +137,8 @@ public class MainActivity extends BaseActivity
   }
 
   private void setMenuSelection(MainTab tab) {
-    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-    hideAllFragment(transaction);
-    Fragment fragment = tab.getFragment();
-    if (!fragment.isAdded()) {
-      transaction.add(R.id.fl_content, fragment);
-    } else {
-      transaction.show(fragment);
-    }
-    transaction.commit();
-  }
-
-  /**
-   * 隐藏所有的Fragment
-   */
-  @SuppressWarnings("all") private void hideAllFragment(FragmentTransaction transaction) {
-    List<Fragment> fragments = getSupportFragmentManager().getFragments();
-    if (fragments == null || fragments.isEmpty()) return;
-    for (Fragment fragment : fragments) {
-      if (fragment.isVisible()) transaction.hide(fragment);
-    }
+    fragmentUtil.hide();
+    fragmentUtil.show(tab);
   }
 
   public void setToolbarColor(Integer color) {
