@@ -35,8 +35,6 @@ public class FragmentUtil {
   public void show(@Fragments String tab) {
     FragmentTransaction transaction = fragmentManager.beginTransaction();
     //图片
-
-
     if (Fragments.PICTURE.equals(tab)) {
       if (mPictureFragment == null) {
         mPictureFragment = PictureFragment.newInstance();
