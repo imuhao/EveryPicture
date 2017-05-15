@@ -3,7 +3,6 @@ package com.imuhao.pictureeveryday.ui.fragment;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewStub;
@@ -56,12 +55,10 @@ public class TodayFragment extends BaseLazyFragment
     vsEmpty = (ViewStub) view.findViewById(R.id.vs_empty);
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
     recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     swipeRefreshLayout.setOnRefreshListener(this);
     swipeRefreshLayout.setColorSchemeColors(ThemeUtils.getThemeColor());
     todayAdapter = new TodayAdapter();
     recyclerView.setAdapter(todayAdapter);
-    //calculateTime();
   }
 
   private void loadData() {

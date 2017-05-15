@@ -4,7 +4,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -68,10 +67,7 @@ public class PictureFragment extends BaseMvpFragment<ImageListPresenter>
     mBtnRetryLoad = (Button) view.findViewById(R.id.btn_retry_load);
     mBtnRetryLoad.setOnClickListener(this);
     ((AnimationDrawable) loadingImg.getBackground()).start();
-
     mRecyclerView = (RecyclerView) view.findViewById(R.id.nav_pic_rv);
-    mRecyclerView.setLayoutManager(
-        new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     mAdapter = new ImageListAdapter(getActivity());
     mAdapter.setOnItemClickListener(this);
