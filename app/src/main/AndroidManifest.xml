@@ -26,6 +26,7 @@
     <activity android:name=".ui.activity.MainActivity"/>
     <activity android:name=".ui.activity.ReviewPictureActivity"/>
     <activity android:name=".ui.activity.WebActivity"/>
+
     <service android:name=".app.InitializeService"/>
   </application>
 
