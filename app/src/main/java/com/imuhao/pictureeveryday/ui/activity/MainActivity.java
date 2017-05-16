@@ -12,15 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.Fragments;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
-import com.imuhao.pictureeveryday.ui.fragment.AboutActivity;
 import com.imuhao.pictureeveryday.ui.listener.AbstractDrawerListener;
 import com.imuhao.pictureeveryday.utils.FragmentUtil;
-import com.imuhao.pictureeveryday.utils.GlideCircleTransform;
 import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.T;
 import com.imuhao.pictureeveryday.utils.ThemeUtils;
@@ -60,13 +56,13 @@ public class MainActivity extends BaseActivity
         mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
       }
     });
-    ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
-    Glide.with(imageView.getContext())
+    //ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
+    /*Glide.with(imageView.getContext())
         .load(R.drawable.bbb)
         .transform(new GlideCircleTransform(imageView.getContext()))
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .dontAnimate()
-        .into(imageView);
+        .into(imageView);*/
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -121,8 +117,9 @@ public class MainActivity extends BaseActivity
         IntentUtils.startAppShareText(this);
         return false;
       case R.id.menu_about://关于
-        AboutActivity.start(MainActivity.this);
-        return false;
+        title.setText(Fragments.ABOUT);
+        setMenuSelection(Fragments.ABOUT);
+        break;
       case R.id.menu_today://今日
         title.setText(getString(R.string.app_name));
         setMenuSelection(Fragments.TODAY);

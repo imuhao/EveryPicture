@@ -29,6 +29,7 @@ class Dispatcher(object):
         self._config = None
 
     def call_command(self, args):
+        # 解析 json 得到配置信息
         self._config = read_freeline_config()
         self._args = args
         self.debug('command line args: ' + str(args))

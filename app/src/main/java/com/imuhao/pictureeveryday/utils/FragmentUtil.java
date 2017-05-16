@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.Fragments;
+import com.imuhao.pictureeveryday.ui.fragment.AboutFragment;
 import com.imuhao.pictureeveryday.ui.fragment.CategoryFragment;
 import com.imuhao.pictureeveryday.ui.fragment.DayListFragment;
 import com.imuhao.pictureeveryday.ui.fragment.PictureFragment;
@@ -19,11 +20,13 @@ import java.util.List;
 public class FragmentUtil {
 
   private FragmentManager fragmentManager;
-
   private PictureFragment mPictureFragment;
   private CategoryFragment mCategoryFragment;
   private SettingFragment mSettingFragment;
   private DayListFragment mDayListFragment;
+  private AboutFragment mAboutFragment;
+
+  private static final int CONTENT_ID = R.id.fl_content;
 
   public FragmentUtil(FragmentManager fragmentManager) {
     this.fragmentManager = fragmentManager;
@@ -38,7 +41,7 @@ public class FragmentUtil {
     if (Fragments.PICTURE.equals(tab)) {
       if (mPictureFragment == null) {
         mPictureFragment = PictureFragment.newInstance();
-        transaction.add(R.id.fl_content, mPictureFragment);
+        transaction.add(CONTENT_ID, mPictureFragment);
       } else {
         transaction.show(mPictureFragment);
       }
@@ -47,7 +50,7 @@ public class FragmentUtil {
     else if (Fragments.CATEGORY.equals(tab)) {
       if (mCategoryFragment == null) {
         mCategoryFragment = CategoryFragment.newInstance();
-        transaction.add(R.id.fl_content, mCategoryFragment);
+        transaction.add(CONTENT_ID, mCategoryFragment);
       } else {
         transaction.show(mCategoryFragment);
       }
@@ -56,7 +59,7 @@ public class FragmentUtil {
     else if (Fragments.SETTING.equals(tab)) {
       if (mSettingFragment == null) {
         mSettingFragment = SettingFragment.newInstance();
-        transaction.add(R.id.fl_content, mSettingFragment);
+        transaction.add(CONTENT_ID, mSettingFragment);
       } else {
         transaction.show(mSettingFragment);
       }
@@ -65,9 +68,18 @@ public class FragmentUtil {
     else if (Fragments.TODAY.equals(tab)) {
       if (mDayListFragment == null) {
         mDayListFragment = DayListFragment.newInstance();
-        transaction.add(R.id.fl_content, mDayListFragment);
+        transaction.add(CONTENT_ID, mDayListFragment);
       } else {
         transaction.show(mDayListFragment);
+      }
+    }
+    //关于
+    else if(Fragments.ABOUT.equals(tab)){
+      if(mAboutFragment ==null){
+        mAboutFragment = AboutFragment.newInstance();
+        transaction.add(CONTENT_ID,mAboutFragment);
+      }else{
+        transaction.show(mAboutFragment);
       }
     }
     transaction.commit();

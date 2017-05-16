@@ -13,8 +13,8 @@
     "build_directory": "/Users/Smile/Public/Project/smile/EveryPicture/app/build",
     "build_script": "./gradlew :app:assembleDebug",
     "build_script_work_directory": "",
-    "build_tools_directory": "/Users/Smile/Library/Android/sdk/build-tools/25.0.2",
-    "build_tools_version": "25.0.2",
+    "build_tools_directory": "/Users/Smile/Library/Android/sdk/build-tools/25.0.3",
+    "build_tools_version": "25.0.3",
     "check_sources_md5": [
         
     ],
