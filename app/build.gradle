@@ -3,7 +3,7 @@ apply plugin: 'com.antfortune.freeline'
 
 android {
   compileSdkVersion 25
-  buildToolsVersion "25.0.2"
+  buildToolsVersion "25.0.3"
 
   defaultConfig {
     applicationId "com.imuhao.pictureeveryday"
@@ -17,6 +17,16 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
+
+  lintOptions {
+    //lint rules of conduct
+    warningsAsErrors true
+    abortOnError false
+    htmlReport true
+    //locations for the rules and output
+    lintConfig file("${rootDir}/config/lint/lint- config.xml")
+    htmlOutput file("${buildDir}/reports/lint/lint.html")
   }
 
   /*splits {
