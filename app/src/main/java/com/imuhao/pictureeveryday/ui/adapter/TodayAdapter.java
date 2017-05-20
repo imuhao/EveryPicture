@@ -1,6 +1,8 @@
 package com.imuhao.pictureeveryday.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.GankBean;
 import com.imuhao.pictureeveryday.bean.ItemViewBean;
+import com.imuhao.pictureeveryday.ui.activity.MainActivity;
 import com.imuhao.pictureeveryday.ui.activity.WebActivity;
 import com.imuhao.pictureeveryday.ui.view.RatioImageView;
 import com.imuhao.pictureeveryday.utils.DataCategoryUtil;
@@ -102,6 +105,12 @@ public class TodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override public void onClick(View v) {
       ItemViewBean itemViewBean = mData.get(getAdapterPosition());
       WebActivity.start(itemView.getContext(), itemViewBean.title, itemViewBean.url);
+
+      LocalBroadcastManager localBroadcast = LocalBroadcastManager.getInstance(v.getContext());
+      Intent intent = new Intent();
+      intent.setAction(MainActivity.CHENAGE_COLOR);
+      localBroadcast.sendBroadcast(intent);
+
     }
 
     private void showItemAnim(final View view, final int position) {

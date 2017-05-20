@@ -1,10 +1,16 @@
 package com.imuhao.pictureeveryday.ui.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +31,7 @@ public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener {
 
   private long exit_Time;
+  public static final String CHENAGE_COLOR = "change_color";
 
   @Bind(R.id.toolbar) Toolbar mToolbar;
   @Bind(R.id.navigationView) NavigationView mNavigationView;
@@ -44,6 +51,22 @@ public class MainActivity extends BaseActivity
     setSwipeBackEnable(false);
     initNavigationView();
     setMenuSelection(Fragments.TODAY);
+
+
+    LocalBroadcastManager locationBroadcastManager = LocalBroadcastManager.getInstance(this);
+    IntentFilter intentFilter = new IntentFilter();
+    intentFilter.addAction(CHENAGE_COLOR);
+    locationBroadcastManager.registerReceiver(new LocationBroadcast(),intentFilter);
+
+  }
+
+  private class LocationBroadcast extends BroadcastReceiver {
+
+    @Override public void onReceive(Context context, Intent intent) {
+      Log.d("smile", "onReceive");
+      //Serializable data = intent.getSerializableExtra("data");
+
+    }
   }
 
   private void initNavigationView() {
