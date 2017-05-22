@@ -18,7 +18,7 @@ public class SmileApi {
 
   public static void getEssatData(String type, final int what, int count, int index,
       final DataCallBack dataCallBack) {
-    ApiService service = Retrofits.getApiService();
+    ApiInterface service = Retrofits.getApiService();
     Call<HttpResult<List<EssayBean>>> call = service.getCommonDateNew(type, count, index);
 
     //type, count, pageIndex

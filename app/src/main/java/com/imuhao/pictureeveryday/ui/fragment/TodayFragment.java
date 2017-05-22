@@ -9,7 +9,7 @@ import android.view.ViewStub;
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.bean.GankBean;
 import com.imuhao.pictureeveryday.http.Retrofits;
-import com.imuhao.pictureeveryday.http.SmileCallback;
+import com.imuhao.pictureeveryday.http.StringCallback;
 import com.imuhao.pictureeveryday.ui.adapter.TodayAdapter;
 import com.imuhao.pictureeveryday.ui.base.BaseLazyFragment;
 import com.imuhao.pictureeveryday.utils.ThemeUtils;
@@ -65,7 +65,7 @@ public class TodayFragment extends BaseLazyFragment
     swipeRefreshLayout.setRefreshing(true);
     Retrofits.getApiService()
         .getGankData(mYear, mMonth, mDay)
-        .enqueue(new SmileCallback<GankBean>() {
+        .enqueue(new StringCallback<GankBean>() {
           @Override public void onSuccess(GankBean gankBean) {
             swipeRefreshFinish();
             if (gankBean.category.size() != 0) {

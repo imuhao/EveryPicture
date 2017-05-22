@@ -13,11 +13,11 @@ import retrofit.Retrofit;
 public class Retrofits {
     private static Retrofit mRetrofit;
 
-    public static ApiService getApiService() {
+    public static ApiInterface getApiService() {
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         }
-        return mRetrofit.create(ApiService.class);
+        return mRetrofit.create(ApiInterface.class);
     }
 
 }
