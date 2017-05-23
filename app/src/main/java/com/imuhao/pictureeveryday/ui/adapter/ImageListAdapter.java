@@ -58,15 +58,16 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
 
     public void onBindViewHolder(final ViewHolder holder, int position) {
         ItemBean bean = mData.get(holder.getAdapterPosition());
-        holder.mTime.setText(bean.getPublishedAt().substring(0, 10));
+        holder.tvTime.setText(bean.getPublishedAt().substring(0, 10));
 
-        Glide.with(mContext).load(bean.getUrl()).placeholder(R.drawable.pic_gray_bg).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.mImage);
+        Glide.with(mContext).load(bean.getUrl()).placeholder(R.drawable.pic_gray_bg).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.ivImage);
 
         //设置自定义高度
-        double height = ScreenHeight * 0.25 + Math.random() * ScreenHeight * 0.25;
-        holder.mImage.getLayoutParams().height = (int) height;
+        double height = (Math.random() + 1) * ScreenHeight * 0.25;
 
-        holder.mImage.setOnClickListener(new View.OnClickListener() {
+        holder.ivImage.getLayoutParams().height = (int) height;
+
+        holder.ivImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onItemClick(v, mData, holder.getAdapterPosition());
@@ -74,7 +75,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
             }
         });
 
-        holder.collect.setOnLikeListener(new OnLikeListener() {
+        holder.lbCollect.setOnLikeListener(new OnLikeListener() {
             public void liked(LikeButton likeButton) {
                 //Toast.makeText(mContext, "收藏成功!", Toast.LENGTH_SHORT).show();
             }
@@ -96,11 +97,11 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.image)
-        ImageView mImage;
+        ImageView ivImage;
         @Bind(R.id.time)
-        TextView mTime;
+        TextView tvTime;
         @Bind(R.id.collect)
-        LikeButton collect;
+        LikeButton lbCollect;
 
         public ViewHolder(View itemView) {
             super(itemView);
