@@ -16,8 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.OnClick;
+
 import com.imuhao.pictureeveryday.R;
 import com.imuhao.pictureeveryday.ui.Fragments;
 import com.imuhao.pictureeveryday.ui.base.BaseActivity;
@@ -27,81 +26,94 @@ import com.imuhao.pictureeveryday.utils.IntentUtils;
 import com.imuhao.pictureeveryday.utils.T;
 import com.imuhao.pictureeveryday.utils.ThemeUtils;
 
-public class MainActivity extends BaseActivity
-    implements NavigationView.OnNavigationItemSelectedListener {
+import butterknife.Bind;
+import butterknife.OnClick;
 
-  private long exit_Time;
-  public static final String CHENAGE_COLOR = "change_color";
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-  @Bind(R.id.toolbar) Toolbar mToolbar;
-  @Bind(R.id.navigationView) NavigationView mNavigationView;
-  @Bind(R.id.drawerLayout) DrawerLayout mDrawerLayout;
-  @Bind(R.id.title) TextView title;
-  @Bind(R.id.iv_open_menu) ImageView ivOpenMenu;
+    private long exit_Time;
+    public static final String CHENAGE_COLOR = "change_color";
 
-  private FragmentUtil fragmentUtil;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
+    @Bind(R.id.navigationView)
+    NavigationView mNavigationView;
+    @Bind(R.id.drawerLayout)
+    DrawerLayout mDrawerLayout;
+    @Bind(R.id.title)
+    TextView title;
+    @Bind(R.id.iv_open_menu)
+    ImageView ivOpenMenu;
 
-  @Override protected int getLayoutId() {
-    return R.layout.activity_main;
-  }
+    private FragmentUtil fragmentUtil;
 
-  @Override protected void initView() {
-    fragmentUtil = new FragmentUtil(getSupportFragmentManager());
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
 
-    setSwipeBackEnable(false);
-    initNavigationView();
-    setMenuSelection(Fragments.TODAY);
+    @Override
+    protected void initView() {
+        fragmentUtil = new FragmentUtil(getSupportFragmentManager());
+
+        setSwipeBackEnable(false);
+        initNavigationView();
+        setMenuSelection(Fragments.TODAY);
 
 
-    LocalBroadcastManager locationBroadcastManager = LocalBroadcastManager.getInstance(this);
-    IntentFilter intentFilter = new IntentFilter();
-    intentFilter.addAction(CHENAGE_COLOR);
-    locationBroadcastManager.registerReceiver(new LocationBroadcast(),intentFilter);
-
-  }
-
-  private class LocationBroadcast extends BroadcastReceiver {
-
-    @Override public void onReceive(Context context, Intent intent) {
-      Log.d("smile", "onReceive");
-      //Serializable data = intent.getSerializableExtra("data");
+        LocalBroadcastManager locationBroadcastManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(CHENAGE_COLOR);
+        locationBroadcastManager.registerReceiver(new LocationBroadcast(), intentFilter);
 
     }
-  }
 
-  private void initNavigationView() {
-    mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
-    mNavigationView.setItemIconTintList(null);
-    mNavigationView.setNavigationItemSelectedListener(this);
-    mDrawerLayout.addDrawerListener(new AbstractDrawerListener() {
-      @Override public void onDrawerOpened(View drawerView) {
-        super.onDrawerOpened(drawerView);
+    private class LocationBroadcast extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("smile", "onReceive");
+            //Serializable data = intent.getSerializableExtra("data");
+
+        }
+    }
+
+    private void initNavigationView() {
         mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
-      }
-    });
-    //ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
+        mNavigationView.setItemIconTintList(null);
+        mNavigationView.setNavigationItemSelectedListener(this);
+        mDrawerLayout.addDrawerListener(new AbstractDrawerListener() {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
+            }
+        });
+        //ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
     /*Glide.with(imageView.getContext())
         .load(R.drawable.bbb)
         .transform(new GlideCircleTransform(imageView.getContext()))
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .dontAnimate()
         .into(imageView);*/
-  }
-
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        mDrawerLayout.openDrawer(GravityCompat.START);
-        break;
     }
-    return super.onOptionsItemSelected(item);
-  }
 
-  @Override public void onBackPressed() {
-    if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
-      mDrawerLayout.closeDrawers();
-      return;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
+            mDrawerLayout.closeDrawers();
+            return;
+        }
 
     /*if (Fragments.TODAY.getFragment().isHidden()) {
       title.setText(getString(R.string.app_name));
@@ -109,60 +121,62 @@ public class MainActivity extends BaseActivity
       mNavigationView.getMenu().findItem(R.id.menu_today).setChecked(true);
       return;
     }*/
-    long currentTime = System.currentTimeMillis();
-    if (currentTime - exit_Time > 2000) {
-      exit_Time = currentTime;
-      T.show(MainActivity.this, "再按一次退出应用");
-      return;
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - exit_Time > 2000) {
+            exit_Time = currentTime;
+            T.show(MainActivity.this, "再按一次退出应用");
+            return;
+        }
+        super.onBackPressed();
     }
-    super.onBackPressed();
-  }
 
-  @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-    mDrawerLayout.closeDrawers();//关闭导航条
-    switch (item.getItemId()) {
-      case R.id.nav_fuli://图片
-        setMenuSelection(Fragments.PICTURE);
-        title.setText(Fragments.PICTURE);
-        break;
-      case R.id.menu_category: //分类
-        title.setText(Fragments.CATEGORY);
-        setMenuSelection(Fragments.CATEGORY);
-        break;
-      case R.id.menu_exit://退出
-        finish();
-        break;
-      case R.id.menu_setting://设置
-        title.setText(Fragments.SETTING);
-        setMenuSelection(Fragments.SETTING);
-        break;
-      case R.id.menu_share://分享
-        IntentUtils.startAppShareText(this);
-        return false;
-      case R.id.menu_about://关于
-        title.setText(Fragments.ABOUT);
-        setMenuSelection(Fragments.ABOUT);
-        break;
-      case R.id.menu_today://今日
-        title.setText(getString(R.string.app_name));
-        setMenuSelection(Fragments.TODAY);
-        break;
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mDrawerLayout.closeDrawers();//关闭导航条
+        switch (item.getItemId()) {
+            case R.id.nav_fuli://图片
+                setMenuSelection(Fragments.PICTURE);
+                title.setText(Fragments.PICTURE);
+                break;
+            case R.id.menu_category: //分类
+                title.setText(Fragments.CATEGORY);
+                setMenuSelection(Fragments.CATEGORY);
+                break;
+            case R.id.menu_exit://退出
+                finish();
+                break;
+            case R.id.menu_setting://设置
+                title.setText(Fragments.SETTING);
+                setMenuSelection(Fragments.SETTING);
+                break;
+            case R.id.menu_share://分享
+                IntentUtils.startAppShareText(this);
+                return false;
+            case R.id.menu_about://关于
+                title.setText(Fragments.ABOUT);
+                setMenuSelection(Fragments.ABOUT);
+                break;
+            case R.id.menu_today://今日
+                title.setText(getString(R.string.app_name));
+                setMenuSelection(Fragments.TODAY);
+                break;
+        }
+        return true;
     }
-    return true;
-  }
 
-  @OnClick({ R.id.iv_open_menu }) public void onClick(View view) {
-    if (view == ivOpenMenu) {
-      mDrawerLayout.openDrawer(Gravity.START);
+    @OnClick({R.id.iv_open_menu})
+    public void onClick(View view) {
+        if (view == ivOpenMenu) {
+            mDrawerLayout.openDrawer(Gravity.START);
+        }
     }
-  }
 
-  private void setMenuSelection(@Fragments String tab) {
-    fragmentUtil.hide();
-    fragmentUtil.show(tab);
-  }
+    private void setMenuSelection(@Fragments String tab) {
+        fragmentUtil.hide();
+        fragmentUtil.show(tab);
+    }
 
-  public void setToolbarColor(Integer color) {
-    mToolbar.setBackgroundColor(color);
-  }
+    public void setToolbarColor(Integer color) {
+        mToolbar.setBackgroundColor(color);
+    }
 }

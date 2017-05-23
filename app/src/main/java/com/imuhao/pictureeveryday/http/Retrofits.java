@@ -15,7 +15,11 @@ public class Retrofits {
 
     public static ApiInterface getApiService() {
         if (mRetrofit == null) {
-            mRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            mRetrofit = new Retrofit.Builder()
+                    .baseUrl(Constant.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+//                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
         }
         return mRetrofit.create(ApiInterface.class);
     }
