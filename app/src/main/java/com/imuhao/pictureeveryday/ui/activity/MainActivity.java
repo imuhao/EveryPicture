@@ -1,16 +1,10 @@
 package com.imuhao.pictureeveryday.ui.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,24 +54,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setSwipeBackEnable(false);
         initNavigationView();
         setMenuSelection(Fragments.TODAY);
-
-
-        LocalBroadcastManager locationBroadcastManager = LocalBroadcastManager.getInstance(this);
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(CHANGE_COLOR);
-        locationBroadcastManager.registerReceiver(new LocationBroadcast(), intentFilter);
-
     }
 
-    private class LocationBroadcast extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.d("smile", "onReceive");
-            //Serializable data = intent.getSerializableExtra("data");
-
-        }
-    }
 
     private void initNavigationView() {
         mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
@@ -90,13 +68,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
             }
         });
-        //ImageView imageView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.image);
-    /*Glide.with(imageView.getContext())
-        .load(R.drawable.bbb)
-        .transform(new GlideCircleTransform(imageView.getContext()))
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .dontAnimate()
-        .into(imageView);*/
     }
 
     @Override
@@ -115,13 +86,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             mDrawerLayout.closeDrawers();
             return;
         }
-
-    /*if (Fragments.TODAY.getFragment().isHidden()) {
-      title.setText(getString(R.string.app_name));
-      setMenuSelection(Fragments.TODAY);
-      mNavigationView.getMenu().findItem(R.id.menu_today).setChecked(true);
-      return;
-    }*/
         long currentTime = System.currentTimeMillis();
         if (currentTime - exit_Time > 2000) {
             exit_Time = currentTime;
