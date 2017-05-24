@@ -32,7 +32,8 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private long exit_Time;
-    public static final String CHENAGE_COLOR = "change_color";
+
+    public static final String CHANGE_COLOR = "change_color";
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -63,7 +64,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         LocalBroadcastManager locationBroadcastManager = LocalBroadcastManager.getInstance(this);
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(CHENAGE_COLOR);
+        intentFilter.addAction(CHANGE_COLOR);
         locationBroadcastManager.registerReceiver(new LocationBroadcast(), intentFilter);
 
     }

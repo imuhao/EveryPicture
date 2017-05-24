@@ -108,7 +108,7 @@ public class TodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
       LocalBroadcastManager localBroadcast = LocalBroadcastManager.getInstance(v.getContext());
       Intent intent = new Intent();
-      intent.setAction(MainActivity.CHENAGE_COLOR);
+      intent.setAction(MainActivity.CHANGE_COLOR);
       localBroadcast.sendBroadcast(intent);
 
     }
