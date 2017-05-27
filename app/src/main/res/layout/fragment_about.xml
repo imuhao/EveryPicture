@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="250dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+>
+
+    <View
+        android:id="@+id/bg_view"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:background="@color/colorPrimary"/>
+
+    <com.yinglan.shadowimageview.ShadowImageView
+        android:id="@+id/image"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="50dp"
+        app:shadowRound="500dp"
+        app:shadowSrc="@drawable/bbb"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="59dp"
+        android:layout_toRightOf="@id/image"
+        android:orientation="vertical"
     >
-
-  <View
-      android:background="@color/colorPrimary"
-      android:layout_width="wrap_content"
-      android:layout_height="250dp"/>
-
-  <com.yinglan.shadowimageview.ShadowImageView
-
-      android:layout_marginTop="50dp"
-      android:id="@+id/image"
-      android:layout_width="130dp"
-      android:layout_height="130dp"
-      app:shadowRound="500dp"
-      app:shadowSrc="@drawable/bbb" />
-
-  <LinearLayout
-      android:layout_marginTop="59dp"
-      android:layout_toRightOf="@id/image"
-      android:layout_marginLeft="5dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Caimuhao"
-        android:textColor="#FFF"
-        android:textSize="22dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Caimuhao"
+            android:textColor="#FFF"
+            android:textSize="22dp"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:text="博   客 : http://caimuhao.com"
-        android:textColor="#FFF"
-        android:textSize="14dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="博   客 : http://caimuhao.com"
+            android:textColor="#FFF"
+            android:textSize="14dp"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:text="Github : http://github.com/imuhao"
-        android:textColor="#FFF"
-        android:textSize="14dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Github : http://github.com/imuhao"
+            android:textColor="#FFF"
+            android:textSize="14dp"
         />
-  </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
