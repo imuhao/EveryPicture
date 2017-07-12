@@ -23,6 +23,6 @@ public class IntentUtils {
   }
 
   public static void startToWebActivity(Context context, EssayBean data) {
-    WebActivity.start(context, data.getDesc(), data.getUrl());
+    WebActivity.launch(context, data.getDesc(), data.getUrl());
   }
 }

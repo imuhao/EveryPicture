@@ -1,7 +1,6 @@
 package com.imuhao.pictureeveryday.ui.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -13,9 +12,7 @@ import android.os.Bundle;
 public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        //startActivity(new Intent(this, MainActivity.class));
+        MainActivity.launch(this);
         finish();
     }
 }

@@ -104,7 +104,7 @@ public class TodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override public void onClick(View v) {
       ItemViewBean itemViewBean = mData.get(getAdapterPosition());
-      WebActivity.start(itemView.getContext(), itemViewBean.title, itemViewBean.url);
+      WebActivity.launch(itemView.getContext(), itemViewBean.title, itemViewBean.url);
 
       LocalBroadcastManager localBroadcast = LocalBroadcastManager.getInstance(v.getContext());
       Intent intent = new Intent();
