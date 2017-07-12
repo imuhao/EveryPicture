@@ -22,6 +22,7 @@ import com.imuhao.pictureeveryday.utils.ThemeUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return R.layout.activity_main;
     }
 
+    @DebugLog
     @Override
     protected void initView() {
         fragmentUtil = new FragmentUtil(getSupportFragmentManager());
@@ -56,7 +58,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setMenuSelection(Fragments.TODAY);
     }
 
-
+    @DebugLog
     private void initNavigationView() {
         mNavigationView.getHeaderView(0).setBackgroundColor(ThemeUtils.getThemeColor());
         mNavigationView.setItemIconTintList(null);
@@ -136,6 +138,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
+    @DebugLog
     private void setMenuSelection(@Fragments String tab) {
         fragmentUtil.hide();
         fragmentUtil.show(tab);

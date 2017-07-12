@@ -16,7 +16,7 @@ import com.imuhao.pictureeveryday.BuildConfig;
 public class InitializeService extends IntentService {
 
     public static final String INITIALIZE_SERVICE = "initialize_service";
-    
+
     public InitializeService() {
         super("InitializeService");
     }
